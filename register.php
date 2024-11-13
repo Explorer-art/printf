@@ -2,15 +2,13 @@
 require_once('db.php');
 
 $login = $_POST['login'];
-$pass = $_POST['pass'];
-$repeatpass = $_POST['repeatpass'];
 $email = $_POST['email'];
-
-
+$pass = $_POST['password'];
+$repeatpass = $_POST['repeatpass'];
 
 if (empty($login) || empty($pass) || empty($repeatpass) || empty($email)) {
     echo "Заполните все поля";
-}else
+} else
 {
     if ($pass != $repeatpass) {
 

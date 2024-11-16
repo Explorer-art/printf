@@ -1,11 +1,11 @@
 <?php
-if (isset($_FILES["file"]) && $_FILES["file"]["error"] === UPLOAD_ERR_OK) {
+if (isset($_FILES["image"]) && $_FILES["image"]["error"] === UPLOAD_ERR_OK) {
 	$upload_dir = "images/";
 
-	$file_tmp_path = $_FILES["file"]["tmp_name"];
-	$file_name = $_FILES["file"]["name"];
-	$file_size = $_FILES["file"]["size"];
-	$file_type = $_FILES["file"]["type"];
+	$file_tmp_path = $_FILES["image"]["tmp_name"];
+	$file_name = $_FILES["image"]["name"];
+	$file_size = $_FILES["image"]["size"];
+	$file_type = $_FILES["image"]["type"];
 	$file_path = $upload_dir . uniqid() . "_" . $file_name;
 
 	if (!is_dir($upload_dir)) {

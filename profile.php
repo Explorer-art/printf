@@ -22,7 +22,7 @@ if(!$user){
 <h1>Профиль пользователя</h1>
 <p>Имя: <?= htmlspecialchars($user['username']) ?></p>
 <a href = "edit_profile.php">Редактировать профиль</a>
-<a href = "index.php">Выйти</a>
+<a href = "index.html">Выйти</a>
 
 
 

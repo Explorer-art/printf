@@ -1,23 +1,25 @@
 <?php
-require_once ("db.php");
+session_start();
+include("db.php");
 
-$login = $_POST['login'];
-$pass = $_POST['password'];
+$username = $_POST["username"];
+$password = $_POST["password"];
 
-if(empty($login) || empty($pass)){
-    echo "Заполните все поля";
-} else{
-    $sql = "SELECT * FROM users WHERE login = '$login' AND password = '$pass'";
-    $result = $connect->query($sql);
+$query = $connection->prepare("SELECT * FROM users WHERE username = :username LIMIT 1"); # Выбрать все записи (*) из таблицы users в которых username = $username, но количество записей в результате не должно превышать 1 (LIMIT 1)
+$query->bindParam("username", $username, PDO::PARAM_STR);
+$query->execute();
 
+if ($query->rowCount() == 1) {
+    $user = $query->fetch(PDO::FETCH_ASSOC); # Извлекаем данные пользователя полученные из базы данных
 
-    if($result->num_rows > 0){
-        while($row = $result->fetch_assoc()){
-            echo "Добро пожаловать " . $row['login'];
-        }
-    }else{
-        echo "Нет такого пользователя";
+    # Функция password_verify() сравнивает пароль (перед этим его хеширует) с хешем пароля в базе данных
+    if (password_verify($password, $user["password"])) {
+        $_SESSION["user_id"] = $user["id"]; # Сохраняем сессию пользователя
+
+        echo "Добро пожаловать, " . $user["username"] . "!";
+    } else {
+        echo "Имя пользователя или пароль неверный!";
     }
+} else {
+    echo "Имя пользователя или пароль неверный!";
 }
-
-

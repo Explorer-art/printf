@@ -1,15 +1,11 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "27052008den";
-$dbname = "registerUsers";
+define("HOST", "localhost");
+define("USER", "root");
+define("PASSWORD", "password");
+define("DATABASE", "registerUsers");
 
-$connect = mysqli_connect($servername, $username, $password, $dbname);
-if (!$connect) {
-    die("Connection failed: " . mysqli_connect_error());
+try {
+    $connection = new PDO("mysql:host=" . HOST . ";dbname=" . DATABASE, USER, PASSWORD);
+} catch (PDOException $e) {
+    exit("Error: " . $e->getMessage());
 }
-/*
-else{
-    echo "Успех";
-}
-*/

@@ -7,16 +7,16 @@ if(!isset($_SESSION['user_id'])){
 }
 
 $user_id = $_SESSION['user_id'];
-$stmt =$PDO->prepare("SELECT * FROM users WHERE id = ?");
-$stmt->execute([$user_id]);
-$user = $stmt = fetch();
+$query =$connection->prepare("SELECT * FROM users WHERE id = ?");
+$query->execute([$user_id]);
+$user = $query = fetch();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
 
 
-    $stmt = $pdo->prepare("UPDATE users SET username = ? WHERE id = ?");
-    if ($stmt->execute([$username, $user_id])) {
+    $query = $connection->prepare("UPDATE users SET username = ? WHERE id = ?");
+    if ($query->execute([$username, $user_id])) {
         echo "Данные успешно обновлены!";
         header("Location: profile.php");
         exit();

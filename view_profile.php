@@ -8,9 +8,9 @@ if(!isset($_GET['id'])){
 }
 
 $user_id = (int)$_GET['id'];
-$stmt = $pdo->prepare("SELECT * FROM users WHERE id = ?");
-$stmt->execute([$user_id]);
-$user = $stmt->fetch();
+$query = $connection->prepare("SELECT * FROM users WHERE id = ?");
+$query->execute([$user_id]);
+$user = $query->fetch();
 
 
 if(!$user){

@@ -9,9 +9,9 @@ if(!isset($_SESSION['user_id'] )){
 }
 
 $user_id = $_SESSION['user_id'];
-$stmt = $pdo->prepare("SELECT * FROM users WHERE id = ?");
-$stmt->execute([$user_id]);
-$user = $stmt->fetch();
+$query = $connection->prepare("SELECT * FROM users WHERE id = ?");
+$query->execute([$user_id]);
+$user = $query->fetch();
 
 if(!$user){
     echo "Пользователь не найден.";

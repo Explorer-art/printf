@@ -10,7 +10,7 @@ $query->bindParam("username", $username, PDO::PARAM_STR);
 $query->execute();
 
 if ($query->rowCount() == 1) {
-    $user = $query->fetch(PDO::FETCH_ASSOC); # Извлекаем данные пользователя полученные из базы данных
+    $user = $query->fetch(); # Извлекаем данные пользователя полученные из базы данных
 
     # Функция password_verify() сравнивает пароль (перед этим его хеширует) с хешем пароля в базе данных
     if (password_verify($password, $user["password"])) {

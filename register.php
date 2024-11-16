@@ -9,11 +9,13 @@ $password_hash = password_hash($password, PASSWORD_BCRYPT); # Хеширован
 
 if (strlen($username) < 3) {
     echo "<p>Имя пользователя должно быть не менее 3 символов</p>";
+    header("HTTP/1.1 400 OK"); # Возвращаем статус-код ответа
     exit();
 }
 
 if (strlen($username) > 25) {
     echo "<p>Имя пользователя не должно быть более 25 символов</p>";
+    header("HTTP/1.1 400 OK");
     exit();
 }
 
@@ -23,6 +25,7 @@ $query->execute(); # Выполняем запрос
 
 if ($query->rowCount() > 0) {
     echo "<p>Это имя пользователя уже занято!</p>";
+    header("HTTP/1.1 400 OK");
     exit();
 }
 
@@ -35,7 +38,9 @@ if ($query->rowCount() == 0) {
     
     if ($result) {
         echo "<p>Регистрация прошла успешно!</p>";
+        header("HTTP/1.1 200 OK");
     } else {
         echo "<p>Неверные данные!</p>";
+        header("HTTP/1.1 400 OK");
     }
 }

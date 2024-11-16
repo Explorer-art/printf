@@ -9,7 +9,7 @@ if(!isset($_SESSION['user_id'])){
 $user_id = $_SESSION['user_id'];
 $query =$connection->prepare("SELECT * FROM users WHERE id = ?");
 $query->execute([$user_id]);
-$user = $query = fetch();
+$user = $query->fetch();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];

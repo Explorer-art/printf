@@ -6,22 +6,27 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Login</title>
-	<link rel="stylesheet" href="/styles/load_style.css">
+	<link rel="stylesheet" href="/static/styles/load_style.css">
+	<link rel="stylesheet" href="/static/styles/login_style.css">
 	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
-<div class="load-form">
-	<form action="">
-		<h1></h1>
-		<div class="load-file">
-			<label for="input-file">
-				<i class='bx bx-image-add'></i> Загрузите изображение
-			</label>
-			<input type="file" accept="image/jpg, image/png, image/jpeg" id="input-file">
-		</div>
+	<div class="load-form">
+		<form action="">
+			<h1></h1>
+			<div class="load-file">
+				<form>
+					<label for="input-file">
+						<i class='bx bx-image-add'></i> Загрузите изображение
+					</label>
+					<input type="file" accept="image/jpg, image/png, image/jpeg" id="input-file" name="image">
 
-	</form>
-</div>
+					<button type="submit" class="btn">
+				</form>
+			</div>
+
+		</form>
+	</div>
 </body>
 </html>

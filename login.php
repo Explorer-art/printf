@@ -38,7 +38,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     </head>
     <body>
-        <?php include("header.php");?>
+        <?php
+        session_start();
+
+        if (isset($_SESSION["user_id"])) {
+            require_once("header_auth.php");
+        } else {
+            require_once("header_unauth.php");
+        ?>
         
         <div class="wrapper">
             <form action="login.php" method="post">

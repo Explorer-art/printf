@@ -11,7 +11,6 @@
 	<div class="main">
 		<a href="profile.php" class="reg">
 			<?php
-			session_start();
 			require_once("db.php");
 
 			$user_id = $_SESSION["user_id"];
@@ -22,9 +21,9 @@
 
 			$user = $query->fetch();
 
-			echo $username
+			echo $user["username"];
 			?>
 			</a>
-		<a href="logout.php" class="user">Вход</a>
+		<a href="logout.php" class="user">Выход</a>
 	</div>
 </header>

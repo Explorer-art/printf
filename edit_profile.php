@@ -10,6 +10,7 @@ $user_id = $_SESSION['user_id'];
 $query =$connection->prepare("SELECT * FROM users WHERE id = ?");
 $query->execute([$user_id]);
 $user = $query->fetch();
+$email = $user['email'];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];

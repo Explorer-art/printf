@@ -49,10 +49,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <h1>Редактировать профиль</h1>
 <form action="edit_profile.php" method="post">
     <label for="username">Имя:</label>
-    <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($user["username"]); ?>" required>
+    <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($user["username"]); ?>">
 
     <label for="email">Новая электронная почта:</label>
-    <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($user["email"]); ?>" required>
+    <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($user["email"]); ?>">
 
     <button type="submit">Сохранить изменения</button>
 </form>

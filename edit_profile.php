@@ -10,7 +10,7 @@ $user_id = $_SESSION['user_id'];
 $query =$connection->prepare("SELECT * FROM users WHERE id = ?");
 $query->execute([$user_id]);
 $user = $query->fetch();
-$email = $user['email'];
+$email = $query->fetch();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <input type ="text" id = "username" name ="username" value ="<?php htmlspecialchars($user["username"]);?>" required>
     <label for = "email">Почта: </label>
     <input type ="text" id = "email" name ="email" value ="<?php htmlspecialchars($user["email"]);?>" required>
-    <button type="submit">Сохранить изминения </button>
+    <button type="submit">Сохранить изменения </button>
 </form>
 <a href = "profile.php">Назад к профилю</a>
 

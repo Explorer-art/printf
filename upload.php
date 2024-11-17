@@ -53,7 +53,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </head>
 
 <body>
-	<?php include("header.php");?>
+	<?php
+	session_start();
+
+	if (isset($_SESSION["user_id"])) {
+		require_once("header_auth.php");
+	} else {
+		require_once("header_unauth.php");
+	}
+	?>
 	
 	<form enctype="multipart/form-data" action="upload.php" method="post">
 		<input type="file" accept="image/jpg, image/png, image/jpeg" name="image">

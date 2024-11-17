@@ -9,6 +9,14 @@
 	<title>Header</title>
 </head>
 <body>
-	<?php include("header.php");?>
+	<?php
+	session_start();
+
+	if (isset($_SESSION["user_id"])) {
+		require_once("header_auth.php");
+	} else {
+		require_once("header_unauth.php");
+	}
+	?>
 </body>
 </html>

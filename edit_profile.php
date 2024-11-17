@@ -30,6 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $query = $connection->prepare("UPDATE users SET email = ? WHERE id = ?");
         if($query->execute([$email, $user_id])){
             echo "Электронная почта успешно обновлена";
+            header("Location: profile.php");
         }
         else{
             echo "Ошибка";
@@ -43,8 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <label for = "username">Имя: </label>
     <input type ="text" id = "username" name ="username" value ="<?php htmlspecialchars($user["username"]);?>" required>
     <label for = "email">Новая электронная почта</label>
-    <input type="email" id="email" name="email" required>
+    <input type="email" id="email" name="email" value ="<?php htmlspecialchars($user["email"]);?>" required>
     <button type="submit">Сохранить изменения </button>
 </form>
 <a href = "profile.php">Назад к профилю</a>
-

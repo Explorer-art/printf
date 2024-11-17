@@ -23,4 +23,5 @@ if(!$user){
 <p>Имя: <?= htmlspecialchars($user['username']) ?></p>
 <p>Почта: <?= htmlspecialchars($user['email']) ?></p>
 <a href = "edit_profile.php">Редактировать профиль</a>
+<br>
 <a href = "logout.php">Выйти</a>

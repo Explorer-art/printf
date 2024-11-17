@@ -17,13 +17,11 @@ if(!$user){
     echo "Пользователь не найден.";
     exit();
 }
-?>;
+?>
 
 <h1>Профиль пользователя</h1>
 <p>Имя: <?= htmlspecialchars($user['username']) ?></p>
 <p>Почта: <?= htmlspecialchars($user['email']) ?></p>
 <a href = "edit_profile.php">Редактировать профиль</a>
-<a href = "index.php">Выйти</a>
-
-
-
+<br>
+<a href = "logout.php">Выйти</a>

@@ -1,5 +1,12 @@
 <?php
+session_start();
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+	if (!isset($_SESSION["user_id"])) {
+		echo "Загружать файлы можно только авторизированным пользователям.";
+		exit();
+	}
+
 	if (isset($_FILES["image"]) && $_FILES["image"]["error"] === UPLOAD_ERR_OK) {
 		$upload_dir = "images/";
 
@@ -10,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 		if ($file_type == "image/png" or $file_type == "image/jpg" or $file_type == "image/jpeg") {
 			$user_id = $_SESSION["user_id"];
-			$file_path = $upload_dir . $user_id . "/" . uniqid() . "_" . $file_name;
+			$file_path = $upload_dir . $user_id . "/" . uniqid("", true) . "_" . $file_name;
 
 			if (!is_dir($upload_dir)) {
 				mkdir($upload_dir, 0777, true);

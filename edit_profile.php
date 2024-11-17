@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <label for = "username">Имя: </label>
     <input type ="text" id = "username" name ="username" value ="<?php htmlspecialchars($user["username"]);?>" required>
     <label for = "email">Почта: </label>
-    <input type ="text" id = "email" name ="email" value ="<?php htmlspecialchars($user["email"]);?>" required>
+    <input type ="text" id = "email" name ="email" value ="<?php htmlspecialchars($email["email"]);?>" required>
     <button type="submit">Сохранить изменения </button>
 </form>
 <a href = "profile.php">Назад к профилю</a>

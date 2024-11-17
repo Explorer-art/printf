@@ -31,9 +31,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 				echo "Файл загружен на сервер!";
 			} else {
 				echo "Ошибка при загрузке файлов.";
+				exit();
 			}
 		} else {
 			echo "Ошибка! Неподдерживаемый тип файла.";
+			header("HTTP/1.1 400 OK");
+			exit();
 		}
 	}
 } else {

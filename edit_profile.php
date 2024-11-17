@@ -23,6 +23,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         echo "Ошибка обновления данных";
     }
+
+
+    $query = $connection->prepare("UPDATE users SET email = ? WHERE id = ?");
+    if ($query->execute([$email, $user_id])) {
+        echo "Данные успешно обновлены!";
+        header("Location: profile.php");
+        exit();
+    } else {
+        echo "Ошибка обновления данных";
+    }
 }
     ?>;
 

@@ -9,13 +9,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $password_hash = password_hash($password, PASSWORD_BCRYPT); # Хеширование пароля
 
     if (strlen($username) < 3) {
-        echo "<p>Имя пользователя должно быть не менее 3 символов</p>";
+        echo "Имя пользователя должно быть не менее 3 символов";
         header("HTTP/1.1 400 OK"); # Возвращаем статус-код ответа
         exit();
     }
 
     if (strlen($username) > 25) {
-        echo "<p>Имя пользователя не должно быть более 25 символов</p>";
+        echo "Имя пользователя не должно быть более 25 символов";
         header("HTTP/1.1 400 OK");
         exit();
     }
@@ -25,25 +25,34 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $query->execute(); # Выполняем запрос
 
     if ($query->rowCount() > 0) {
-        echo "<p>Это имя пользователя уже занято!</p>";
+        echo "Это имя пользователя уже занято!";
         header("HTTP/1.1 400 OK");
         exit();
     }
 
-    if ($query->rowCount() == 0) {
-        $query = $connection->prepare("INSERT INTO users(username,email,password) VALUES (:username,:email,:password_hash)"); # Добавляем нового пользователя
-        $query->bindParam("username", $username, PDO::PARAM_STR);
-        $query->bindParam("email", $email, PDO::PARAM_STR);
-        $query->bindParam("password_hash", $password_hash, PDO::PARAM_STR);
-        $result = $query->execute();
+    $query = $connection->prepare("SELECT * FROM users WHERE email = :email AND username != :username");
+    $query->bindParam("email", $email, PDO::PARAM_STR);
+    $query->bindParam("username", $username, PDO::PARAM_STR);
+    $query->execute();
+
+    if ($query->rowCount() > 0) {
+        echo "Этот адрес электронной почты уже зарегистрирован";
+        header("HTTP/1.1 400 OK");
+        exit();
+    }
+
+    $query = $connection->prepare("INSERT INTO users(username,email,password) VALUES (:username,:email,:password_hash)"); # Добавляем нового пользователя
+    $query->bindParam("username", $username, PDO::PARAM_STR);
+    $query->bindParam("email", $email, PDO::PARAM_STR);
+    $query->bindParam("password_hash", $password_hash, PDO::PARAM_STR);
+    $result = $query->execute();
         
-        if ($result) {
-            echo "<p>Регистрация прошла успешно!</p>";
-            header("HTTP/1.1 200 OK");
-        } else {
-            echo "<p>Неверные данные!</p>";
-            header("HTTP/1.1 400 OK");
-        }
+    if ($result) {
+        echo "Регистрация прошла успешно!";
+        header("HTTP/1.1 200 OK");
+    } else {
+        echo "Неверные данные!";
+        header("HTTP/1.1 400 OK");
     }
 } else {
 ?>

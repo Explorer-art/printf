@@ -16,6 +16,7 @@
 		require_once("header_auth.php");
 	} else {
 		require_once("header_unauth.php");
+	}
 	?>
 </body>
 </html>

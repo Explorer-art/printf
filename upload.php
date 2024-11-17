@@ -60,6 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		require_once("header_auth.php");
 	} else {
 		require_once("header_unauth.php");
+	}
 	?>
 	
 	<form enctype="multipart/form-data" action="upload.php" method="post">

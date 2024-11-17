@@ -10,7 +10,7 @@ $user_id = $_SESSION['user_id'];
 $query =$connection->prepare("SELECT * FROM users WHERE id = ?");
 $query->execute([$user_id]);
 $user = $query->fetch();
-$new_email = trim(strip_tags(htmlspecialchars($_POST['new_email'])));
+$email = trim(strip_tags(htmlspecialchars($_POST['email'])));
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-    $query = $connection->prepare("UPDATE users SET username = ? WHERE id = ?");
+    $query = $connection->prepare("UPDATE users SET email = ? WHERE id = ?");
         if($query->execute([$new_email, $user_id])){
             echo "Электронная почта успешно обновлена";
         }

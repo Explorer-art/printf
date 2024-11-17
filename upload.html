@@ -5,24 +5,14 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Login</title>
+	<title>Upload</title>
 </head>
 
 <body>
-	<div class="load-form">
-		<form action="upload.php" method="post">
-			<div class="load-file">
-				<form>
-					<label for="input-file">
-						<i class='bx bx-image-add'></i> Выберите изображение
-					</label>
-					<input type="file" accept="image/jpg, image/png, image/jpeg" id="input-file" name="image">
+	<form enctype="multipart/form-data" action="upload.php" method="post">
+		<input type="file" accept="image/jpg, image/png, image/jpeg" name="image">
 
-					<input type="submit" value="Загрузить изображение">
-				</form>
-			</div>
-
-		</form>
-	</div>
+		<input type="submit" value="Загрузить изображение">
+	</form>
 </body>
 </html>

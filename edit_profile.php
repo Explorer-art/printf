@@ -2,49 +2,59 @@
 session_start();
 include "db.php";
 
-if(!isset($_SESSION['user_id'])){
+if (!isset($_SESSION['user_id'])) {
     header("Location: index.php");
+    exit();
 }
 
 $user_id = $_SESSION['user_id'];
-$query =$connection->prepare("SELECT * FROM users WHERE id = ?");
+$query = $connection->prepare("SELECT * FROM users WHERE id = ?");
 $query->execute([$user_id]);
 $user = $query->fetch();
 
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
-    $email = trim(strip_tags(htmlspecialchars($_POST['email'])));
+    $email = trim(strip_tags(htmlspecialchars($_POST["email"])));
 
-    $query = $connection->prepare("UPDATE users SET username = ? WHERE id = ?");
-    if ($query->execute([$username, $user_id])) {
-        echo "Данные успешно обновлены!";
+
+    $emailQuery = $connection->prepare("SELECT * FROM users WHERE email = ? AND id != ?");
+    $emailQuery->execute([$email, $user_id]);
+
+    if ($emailQuery->rowCount() > 0) {
+        echo "Электронная почта уже используется другим пользователем.";
+    } else {
+
+        $query = $connection->prepare("UPDATE users SET username = ? WHERE id = ?");
+        if ($query->execute([$username, $user_id])) {
+            echo "Имя пользователя успешно обновлено!";
+        } else {
+            echo "Ошибка обновления имени пользователя.";
+        }
+
+
+        $query = $connection->prepare("UPDATE users SET email = ? WHERE id = ?");
+        if ($query->execute([$email, $user_id])) {
+            echo "Электронная почта успешно обновлена!";
+        } else {
+            echo "Ошибка обновления электронной почты.";
+        }
+
+        // Перенаправление на профиль после успешного обновления
         header("Location: profile.php");
         exit();
-    } else {
-        echo "Ошибка обновления данных";
     }
-
-
-
-    $query = $connection->prepare("UPDATE users SET email = ? WHERE id = ?");
-        if($query->execute([$email, $user_id])){
-            echo "Электронная почта успешно обновлена";
-            header("Location: profile.php");
-        }
-        else{
-            echo "Ошибка";
-        }
 }
-    ?>;
+?>
 
-
-<h1>Редактировать профиль </h1>>
+<h1>Редактировать профиль</h1>
 <form action="edit_profile.php" method="post">
-    <label for = "username">Имя: </label>
-    <input type ="text" id = "username" name ="username" value ="<?php htmlspecialchars($user["username"]);?>" required>
-    <label for = "email">Новая электронная почта</label>
-    <input type="email" id="email" name="email" value ="<?php htmlspecialchars($user["email"]);?>" required>
-    <button type="submit">Сохранить изменения </button>
+    <label for="username">Имя:</label>
+    <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($user["username"]); ?>" required>
+
+    <label for="email">Новая электронная почта:</label>
+    <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($user["email"]); ?>" required>
+
+    <button type="submit">Сохранить изменения</button>
 </form>
-<a href = "profile.php">Назад к профилю</a>
+<a href="profile.php">Назад к профилю</a>
+

@@ -48,8 +48,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $result = $query->execute();
         
     if ($result) {
-        echo "Регистрация прошла успешно!";
         header("HTTP/1.1 200 OK");
+        header("Location: profile.php");
     } else {
         echo "Неверные данные!";
         header("HTTP/1.1 400 OK");

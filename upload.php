@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once("db.php");
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	if (!isset($_SESSION["user_id"])) {
@@ -8,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	}
 
 	if (isset($_FILES["image"]) && $_FILES["image"]["error"] === UPLOAD_ERR_OK) {
-		$upload_dir = "images/";
+		$upload_dir = "uploads/";
 
 		$file_tmp_path = $_FILES["image"]["tmp_name"];
 		$file_name = $_FILES["image"]["name"];
@@ -18,6 +19,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		if ($file_type == "image/png" or $file_type == "image/jpg" or $file_type == "image/jpeg") {
 			$user_id = $_SESSION["user_id"];
 			$file_path = $upload_dir . $user_id . "/" . uniqid("", true) . "_" . $file_name;
+
+			$query = $connection->prepare("INSERT INTO images (user_id, file_name, file_path) VALUES (:user_id, :file_name, :file_path)");
+			$query->bindParam("user_id", $user_id, PDO::PARAM_STR);
+			$query->bindParam("file_name", $file_name, PDO::PARAM_STR);
+			$query->bindParam("file_path", $file_path, PDO::PARAM_STR);
+			$query->execute();
 
 			if (!is_dir($upload_dir)) {
 				mkdir($upload_dir, 0777, true);

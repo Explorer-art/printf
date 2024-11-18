@@ -16,8 +16,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         # Функция password_verify() сравнивает пароль (перед этим его хеширует) с хешем пароля в базе данных
         if (password_verify($password, $user["password"])) {
             $_SESSION["user_id"] = $user["id"]; # Сохраняем сессию пользователя
-
-            echo "Добро пожаловать, " . $user["username"] . "!";
+            
+            header("Location: profile.php");
         } else {
             echo "Имя пользователя или пароль неверный!";
         }

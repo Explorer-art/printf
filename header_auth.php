@@ -4,7 +4,7 @@
 		<ul class="nav_links">
 			<li><a href="/">Главная</a> </li>
 			<li><a href="upload.php">Загрузить</a> </li>
-			<li><a href="#">О нас</a> </li>
+			<li><a href="about_us.php">О нас</a> </li>
 		</ul>
 	</nav>
 

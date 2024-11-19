@@ -61,7 +61,7 @@
 		foreach ($images as $image) {
 			echo '<div>';
 			echo '<p>"' . htmlspecialchars($image["file_name"]) . '"</p>';
-			echo '<img src="' . htmlspecialchars($image["file_path"]) . ' width="250">';
+			echo '<img src="' . htmlspecialchars($image["file_path"]) . '" width=250>';
 			echo '<div>';
 		}
 	?>

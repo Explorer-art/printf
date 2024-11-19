@@ -11,25 +11,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if (strlen($username) < 3) {
         echo "Имя пользователя должно быть не менее 3 символов";
-        http_response_code(400); # Возвращаем статус-код ответа
+        header("HTTP/1.1 400 OK"); # Возвращаем статус-код ответа
         exit();
     }
 
     if (strlen($username) > 25) {
         echo "Имя пользователя не должно быть более 25 символов";
-        http_response_code(400);
-        exit();
-    }
-
-    if (strlen($password) < 8) {
-        echo "Длина пароля должна быть не менее 8 символов";
-        http_response_code(400); # Возвращаем статус-код ответа
-        exit();
-    }
-
-    if (strlen($password) > 50) {
-        echo "Длина паролья не должна быть более 50 символов";
-        http_response_code(400);
+        header("HTTP/1.1 400 OK");
         exit();
     }
 
@@ -39,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if ($query->rowCount() > 0) {
         echo "Это имя пользователя уже занято!";
-        http_response_code(400);
+        header("HTTP/1.1 400 OK");
         exit();
     }
 
@@ -50,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if ($query->rowCount() > 0) {
         echo "Этот адрес электронной почты уже зарегистрирован";
-        http_response_code(400);
+        header("HTTP/1.1 400 OK");
         exit();
     }
 
@@ -61,11 +49,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $result = $query->execute();
         
     if ($result) {
-        http_response_code(200);
+        header("HTTP/1.1 200 OK");
         header("Location: profile.php");
     } else {
         echo "Неверные данные!";
-        http_response_code(400);
+        header("HTTP/1.1 400 OK");
     }
 } else {
 ?>
@@ -82,8 +70,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     </head>
     <body>
         <?php
-        session_start();
-
         if (isset($_SESSION["user_id"])) {
             require_once("header_auth.php");
         } else {

@@ -1,6 +1,7 @@
 <?php
+session_start();
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    session_start();
     require_once("db.php");
 
     $username = $_POST["username"];
@@ -20,11 +21,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             header("Location: profile.php");
         } else {
             echo "Имя пользователя или пароль неверный!";
-            http_response_code(401);
         }
     } else {
         echo "Имя пользователя или пароль неверный!";
-        http_response_code(401);
     }
 } else {
 ?>
@@ -41,8 +40,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     </head>
     <body>
         <?php
-        session_start();
-
         if (isset($_SESSION["user_id"])) {
             require_once("header_auth.php");
         } else {

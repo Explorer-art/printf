@@ -36,13 +36,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 			if (move_uploaded_file($file_tmp_path, $file_path)) {
 				echo "Файл загружен на сервер!";
+				http_response_code(200);
 			} else {
 				echo "Ошибка при загрузке файлов.";
+				http_response_code(500);
 				exit();
 			}
 		} else {
 			echo "Ошибка! Неподдерживаемый тип файла.";
-			header("HTTP/1.1 400 OK");
+			http_response_code(400);
 			exit();
 		}
 	}

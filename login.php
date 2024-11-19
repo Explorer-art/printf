@@ -20,9 +20,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             header("Location: profile.php");
         } else {
             echo "Имя пользователя или пароль неверный!";
+            http_response_code(401);
         }
     } else {
         echo "Имя пользователя или пароль неверный!";
+        http_response_code(401);
     }
 } else {
 ?>

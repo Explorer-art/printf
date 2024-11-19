@@ -3,7 +3,8 @@ session_start();
 include "db.php";
 
 if (!isset($_SESSION['user_id'])) {
-    header("Location: index.php");
+    http_response_code(401);
+    header("Location: login.php");
     exit();
 }
 
@@ -22,27 +23,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($emailQuery->rowCount() > 0) {
         echo "Электронная почта уже используется другим пользователем.";
-    } else {
-
-        $query = $connection->prepare("UPDATE users SET username = ? WHERE id = ?");
-        if ($query->execute([$username, $user_id])) {
-            echo "Имя пользователя успешно обновлено!";
-        } else {
-            echo "Ошибка обновления имени пользователя.";
-        }
-
-
-        $query = $connection->prepare("UPDATE users SET email = ? WHERE id = ?");
-        if ($query->execute([$email, $user_id])) {
-            echo "Электронная почта успешно обновлена!";
-        } else {
-            echo "Ошибка обновления электронной почты.";
-        }
-
-        // Перенаправление на профиль после успешного обновления
-        header("Location: profile.php");
+        http_response_code(400);
         exit();
     }
+
+    $query = $connection->prepare("UPDATE users SET username = ? WHERE id = ?");
+    if ($query->execute([$username, $user_id])) {
+        echo "Имя пользователя успешно обновлено!";
+    } else {
+        echo "Ошибка обновления имени пользователя.";
+        http_response_code(500);
+        exit();
+    }
+
+    $query = $connection->prepare("UPDATE users SET email = ? WHERE id = ?");
+    if ($query->execute([$email, $user_id])) {
+        echo "Электронная почта успешно обновлена!";
+    } else {
+        echo "Ошибка обновления электронной почты.";
+        http_response_code(500);
+        exit();
+    }
+
+    // Перенаправление на профиль после успешного обновления
+    header("Location: profile.php");
+    http_response_code(200);
+    exit();
 }
 ?>
 

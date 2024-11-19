@@ -20,12 +20,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			$user_id = $_SESSION["user_id"];
 			$file_path = $upload_dir . $user_id . "/" . uniqid("", true) . "_" . $file_name;
 
-			$query = $connection->prepare("INSERT INTO images (user_id, file_name, file_path) VALUES (:user_id, :file_name, :file_path)");
-			$query->bindParam("user_id", $user_id, PDO::PARAM_STR);
-			$query->bindParam("file_name", $file_name, PDO::PARAM_STR);
-			$query->bindParam("file_path", $file_path, PDO::PARAM_STR);
-			$query->execute();
-
 			if (!is_dir($upload_dir)) {
 				mkdir($upload_dir, 0777, true);
 			}
@@ -35,6 +29,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			}
 
 			if (move_uploaded_file($file_tmp_path, $file_path)) {
+				$query = $connection->prepare("INSERT INTO images (user_id, file_name, file_path) VALUES (:user_id, :file_name, :file_path)");
+				$query->bindParam("user_id", $user_id, PDO::PARAM_STR);
+				$query->bindParam("file_name", $file_name, PDO::PARAM_STR);
+				$query->bindParam("file_path", $file_path, PDO::PARAM_STR);
+				$query->execute();
+				
 				echo "Файл загружен на сервер!";
 				http_response_code(200);
 			} else {

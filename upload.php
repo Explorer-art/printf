@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 				$query->bindParam("file_name", $file_name, PDO::PARAM_STR);
 				$query->bindParam("file_path", $file_path, PDO::PARAM_STR);
 				$query->execute();
-				
+
 				echo "Файл загружен на сервер!";
 				http_response_code(200);
 			} else {
@@ -58,6 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/static/styles/header_style.css">
+	<link rel="stylesheet" href="/static/styles/upload_style.css">
 	<title>Upload</title>
 </head>
 
@@ -70,11 +71,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	}
 	?>
 	
-	<form enctype="multipart/form-data" action="upload.php" method="post">
-		<input type="file" accept="image/jpg, image/png, image/jpeg" name="image">
+	<div class="load-form">
+		<form enctype="multipart/form-data" action="upload.php" method="post">
+			<div class="load-file">
+				<form>
+					<label for="input-file">
+						<i class='bx bx-image-add'></i> Выберите изображение
+					</label>
+					<input type="file" accept="image/jpg, image/png, image/jpeg" id="input-file" name="image">
 
-		<input type="submit" value="Загрузить изображение">
-	</form>
+					<input type="submit" value="Загрузить изображение">
+				</form>
+			</div>
+
+		</form>
+	</div>
 </body>
 </html>
 <?php

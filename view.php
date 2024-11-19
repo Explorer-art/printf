@@ -29,15 +29,15 @@
 
 		if ($page == 1) {
 			$query = $connection->prepare("SELECT * FROM images ORDER BY created_date DESC LIMIT :images_per_page");
-			$query->bindParam("images_per_page", $images_per_page, PDO::PARAM_STR);
+			$query->bindParam("images_per_page", $images_per_page, PDO::PARAM_INT);
 			$query->execute();
 		} elseif ($page == 2) {
 			$query = $connection->prepare("SELECT * FROM images ORDER BY created_date DESC LIMIT :images_per_page OFFSET :images_per_page");
-			$query->bindParam("images_per_page", $images_per_page, PDO::PARAM_STR);
+			$query->bindParam("images_per_page", $images_per_page, PDO::PARAM_INT);
 			$query->execute();
 		} else {
 			$query = $connection->prepare("SELECT * FROM images ORDER BY created_date DESC LIMIT :images_per_page OFFSET :page * :images_per_page");
-			$query->bindParam("images_per_page", $images_per_page, PDO::PARAM_STR);
+			$query->bindParam("images_per_page", $images_per_page, PDO::PARAM_INT);
 			$query->bindParam("page", $page, PDO::PARAM_STR);
 			$query->execute();
 		}

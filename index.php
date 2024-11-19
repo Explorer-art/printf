@@ -22,6 +22,8 @@
 	<br>
 
 	<?php
+		require_once("db.php");
+		
 		$images_per_page = 10;
 
 		if (isset($_GET["page"])) {

@@ -23,7 +23,21 @@
 
 	<?php
 		$images_per_page = 10;
-		$page = $_GET["page"];
+
+		if (isset($_GET["page"])) {
+			$page = $_GET["page"];
+		} else {
+			$page = 1;
+		}
+
+		$query = $connection->query("SELECT COUNT(*) FROM images");
+
+		$total_images = $query->fetchColumn();
+		$total_pages = ceil($total_images / $images_per_page);
+
+		if ($page > $total_pages) {
+			$page = $total_pages;
+		}
 
 		require_once("db.php");
 

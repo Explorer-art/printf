@@ -82,13 +82,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     </head>
     <body>
         <?php
+        session_start();
+
         if (isset($_SESSION["user_id"])) {
             require_once("header_auth.php");
         } else {
             require_once("header_unauth.php");
         }
         ?>
-        
+        <main>
         <div class="wrapper">
             <form action="register.php" method="post">
                 <h1>Регистрация</h1>
@@ -119,6 +121,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 </div>
             </form>
         </div>
+    </main>
     </body>
 </html>
 <?php

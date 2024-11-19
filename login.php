@@ -50,31 +50,33 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
         ?>
         
-        <div class="wrapper">
-            <form action="login.php" method="post">
-                <h1>Вход</h1>
-                <div class="input-box">
-                    <input type="text" placeholder="Имя пользоватля" name="username" required>
-                    <i class='bx bxs-user'></i>
-                </div>
-
-                <div class="input-box">
-                    <input type="password" placeholder="Пароль" name="password" required>
-                    <i class='bx bxs-lock-alt'></i>
-                </div>
-
-                <div class="remember-forgot">
-                    <label><input type="checkbox"> Запомнить меня</label>
-                    <a href="#">Забыли пароль?</a>
-                </div>
-
-                <button type="submit" class="btn">Вход</button>
-
-                <div class="register-link">
-                    <p>Нет аккаунта? <a href="register.html">Регистрация</a></p>
-                </div>
-            </form>
-        </div>
+        <main>
+          <div class="wrapper">
+              <form action="login.php" method="post">
+                  <h1>Вход</h1>
+                  <div class="input-box">
+                      <input type="text" placeholder="Имя пользоватля" name="username" required>
+                      <i class='bx bxs-user'></i>
+                  </div>
+  
+                  <div class="input-box">
+                      <input type="password" placeholder="Пароль" name="password" required>
+                      <i class='bx bxs-lock-alt'></i>
+                  </div>
+  
+                  <div class="remember-forgot">
+                      <label><input type="checkbox"> Запомнить меня</label>
+                      <a href="#">Забыли пароль?</a>
+                  </div>
+  
+                  <button type="submit" class="btn">Вход</button>
+  
+                  <div class="register-link">
+                      <p>Нет аккаунта? <a href="register.php">Регистрация</a></p>
+                  </div>
+              </form>
+          </div>
+      </main>
     </body>
 </html>
 <?php

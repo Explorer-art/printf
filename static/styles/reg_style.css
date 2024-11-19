@@ -7,14 +7,12 @@
     font-family: 'poppins', sans-serif;
 }
 
-body {
+main {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: calc(100vh - 75px); /* Замените 100px на примерную высоту вашей шапки */
     background-color: #0d1117;
-    background-size: cover;
-    background-position: center;
 }
 
 .wrapper {

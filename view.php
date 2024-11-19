@@ -31,7 +31,7 @@
 			$query = $connection->prepare("SELECT * FROM images ORDER BY created_date DESC LIMIT :images_per_page");
 			$query->bindParam("images_per_page", $images_per_page, PDO::PARAM_STR);
 			$query->execute();
-		} elseif ($paeg == 2) {
+		} elseif ($page == 2) {
 			$query = $connection->prepare("SELECT * FROM images ORDER BY created_date DESC LIMIT :images_per_page OFFSET :images_per_page");
 			$query->bindParam("images_per_page", $images_per_page, PDO::PARAM_STR);
 			$query->execute();

@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 				$data = [
 		            "success" => true,
 		            "message" => "Файл загружен на сервер!"
-		        ]
+		        ];
 
 		        header("Content-Type: application/json; charset=utf-8");
 		        http_response_code(200);
@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 				$data = [
 		            "success" => false,
 		            "message" => "Ошибка при загрузке файлов"
-		        ]
+		        ];
 
 		        header("Content-Type: application/json; charset=utf-8");
 		        http_response_code(500);
@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			$data = [
 				"success" => false,
 				"message" => "Ошибка! Неподдерживаемый тип файла"
-			]
+			];
 
 			header("Content-Type: application/json; charset=utf-8");
 			http_response_code(400);

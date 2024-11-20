@@ -9,6 +9,14 @@
 	<title>Printf</title>
 </head>
 <body>
+	<?php
+	if (isset($_SESSION["user_id"])) {
+		require_once("header_auth.php");
+	} else {
+		require_once("header_unauth.php");
+	}
+	?>
+
 	<br>
 
 	<?php

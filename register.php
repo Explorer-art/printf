@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $data = [
             "success" => false,
             "message" => "Имя пользователя должно быть не менее 3 символов"
-        ]
+        ];
 
         header("Content-Type: application/json; charset=utf-8");
         http_response_code(400);
@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $data = [
             "success" => false,
             "message" => "Имя пользователя не должно быть более 25 символов"
-        ]
+        ];
 
         header("Content-Type: application/json; charset=utf-8");
         http_response_code(400);
@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $data = [
             "success" => false,
             "message" => "Это имя пользователя уже занято!"
-        ]
+        ];
 
         header("Content-Type: application/json; charset=utf-8");
         http_response_code(400);
@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $data = [
             "success" => false,
             "message" => "Этот адрес электронной почты уже зарегистрирован"
-        ]
+        ];
 
         header("Content-Type: application/json; charset=utf-8");
         http_response_code(400);
@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $data = [
             "success" => true,
             "message" => "Успешная регистрация!"
-        ]
+        ];
 
         header("Content-Type: application/json; charset=utf-8");
         header("Location: profile.php");
@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $data = [
             "success" => false,
             "message" => "Неверные данные!"
-        ]
+        ];
 
         header("Content-Type: application/json; charset=utf-8");
         http_response_code(400);

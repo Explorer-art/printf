@@ -22,32 +22,62 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $emailQuery->execute([$email, $user_id]);
 
     if ($emailQuery->rowCount() > 0) {
-        echo "Электронная почта уже используется другим пользователем.";
+        $data = [
+            "success" => false,
+            "message" => "Электронная почта уже используется другим пользователем"
+        ]
+
+        header("Content-Type: application/json; charset=utf-8");
         http_response_code(400);
+        echo json_encode($data);
         exit();
     }
 
     $query = $connection->prepare("UPDATE users SET username = ? WHERE id = ?");
     if ($query->execute([$username, $user_id])) {
-        echo "Имя пользователя успешно обновлено!";
+        $data = [
+            "success" => true,
+            "message" => "Имя пользователя успешно обновлено!"
+        ]
+
+        header("Content-Type: application/json; charset=utf-8");
+        http_response_code(200);
+        echo json_encode($data);
     } else {
-        echo "Ошибка обновления имени пользователя.";
+        $data = [
+            "success" => false,
+            "message" => "Ошибка обновления имени пользователя"
+        ]
+
+        header("Content-Type: application/json; charset=utf-8");
         http_response_code(500);
+        echo json_encode($data);
         exit();
     }
 
     $query = $connection->prepare("UPDATE users SET email = ? WHERE id = ?");
     if ($query->execute([$email, $user_id])) {
-        echo "Электронная почта успешно обновлена!";
+        $data = [
+            "success" => true,
+            "message" => "Электронная почта успешно обновлена!"
+        ]
+
+        header("Content-Type: application/json; charset=utf-8");
+        http_response_code(200);
+        echo json_encode($data);
     } else {
-        echo "Ошибка обновления электронной почты.";
+        $data = [
+            "success" => false,
+            "message" => "Ошибка обновления электронной почты"
+        ]
+
+        header("Content-Type: application/json; charset=utf-8");
         http_response_code(500);
-        exit();
+        echo json_encode($data);
     }
 
     // Перенаправление на профиль после успешного обновления
     header("Location: profile.php");
-    http_response_code(200);
     exit();
 }
 ?>
@@ -63,4 +93,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <button type="submit">Сохранить изменения</button>
 </form>
 <a href="profile.php">Назад к профилю</a>
-

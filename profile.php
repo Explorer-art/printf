@@ -13,7 +13,14 @@ $query->execute([$user_id]);
 $user = $query->fetch();
 
 if(!$user){
-    echo "Пользователь не найден.";
+    $data = [
+        "success" => false,
+        "message" => "Пользователь не найден"
+    ]
+
+    header("Content-Type: application/json; charset=utf-8");
+    http_response_code(200);
+    echo json_encode($data);
     exit();
 }
 ?>

@@ -10,14 +10,26 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $password_hash = password_hash($password, PASSWORD_BCRYPT); # Хеширование пароля
 
     if (strlen($username) < 3) {
-        echo "Имя пользователя должно быть не менее 3 символов";
-        header("HTTP/1.1 400 OK"); # Возвращаем статус-код ответа
+        $data = [
+            "success" => false,
+            "message" => "Имя пользователя должно быть не менее 3 символов"
+        ]
+
+        header("Content-Type: application/json; charset=utf-8");
+        http_response_code(400);
+        echo json_encode($data);
         exit();
     }
 
     if (strlen($username) > 25) {
-        echo "Имя пользователя не должно быть более 25 символов";
-        header("HTTP/1.1 400 OK");
+        $data = [
+            "success" => false,
+            "message" => "Имя пользователя не должно быть более 25 символов"
+        ]
+
+        header("Content-Type: application/json; charset=utf-8");
+        http_response_code(400);
+        echo json_encode($data);
         exit();
     }
 
@@ -26,8 +38,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $query->execute(); # Выполняем запрос
 
     if ($query->rowCount() > 0) {
-        echo "Это имя пользователя уже занято!";
-        header("HTTP/1.1 400 OK");
+        $data = [
+            "success" => false,
+            "message" => "Это имя пользователя уже занято!"
+        ]
+
+        header("Content-Type: application/json; charset=utf-8");
+        http_response_code(400);
+        echo json_encode($data);
         exit();
     }
 
@@ -37,8 +55,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $query->execute();
 
     if ($query->rowCount() > 0) {
-        echo "Этот адрес электронной почты уже зарегистрирован";
-        header("HTTP/1.1 400 OK");
+        $data = [
+            "success" => false,
+            "message" => "Этот адрес электронной почты уже зарегистрирован"
+        ]
+
+        header("Content-Type: application/json; charset=utf-8");
+        http_response_code(400);
+        echo json_encode($data);
         exit();
     }
 
@@ -49,11 +73,24 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $result = $query->execute();
         
     if ($result) {
-        header("HTTP/1.1 200 OK");
+        $data = [
+            "success" => true,
+            "message" => "Успешная регистрация!"
+        ]
+
+        header("Content-Type: application/json; charset=utf-8");
         header("Location: profile.php");
+        http_response_code(200);
+        echo json_encode($data);
     } else {
-        echo "Неверные данные!";
-        header("HTTP/1.1 400 OK");
+        $data = [
+            "success" => false,
+            "message" => "Неверные данные!"
+        ]
+
+        header("Content-Type: application/json; charset=utf-8");
+        http_response_code(400);
+        echo json_encode($data);
     }
 } else {
 ?>

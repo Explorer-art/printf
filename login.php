@@ -18,12 +18,34 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (password_verify($password, $user["password"])) {
             $_SESSION["user_id"] = $user["id"]; # Сохраняем сессию пользователя
             
+            $data = [
+                "success" => true,
+                "message" => "Успешная авторизация!"
+            ]
+
+            header("Content-Type: application/json; charset=utf-8");
             header("Location: profile.php");
+            http_response_code(200);
+            echo json_encode($data);
         } else {
-            echo "Имя пользователя или пароль неверный!";
+            $data = [
+                "success" => false,
+                "message" => "Имя пользователя или пароль неверный!"
+            ]
+
+            header("Content-Type: application/json; charset=utf-8");
+            http_response_code(400);
+            echo json_encode($data);
         }
     } else {
-        echo "Имя пользователя или пароль неверный!";
+        $data = [
+                "success" => false,
+                "message" => "Имя пользователя или пароль неверный!"
+            ]
+
+        header("Content-Type: application/json; charset=utf-8");
+        http_response_code(400);
+        echo json_encode($data);
     }
 } else {
 ?>

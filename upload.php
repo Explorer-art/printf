@@ -9,6 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	}
 
 	if (isset($_FILES["image"]) && $_FILES["image"]["error"] === UPLOAD_ERR_OK) {
+		$image_title = $_POST["title"];
 		$upload_dir = "uploads/";
 
 		$file_tmp_path = $_FILES["image"]["tmp_name"];
@@ -29,10 +30,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			}
 
 			if (move_uploaded_file($file_tmp_path, $file_path)) {
-				$query = $connection->prepare("INSERT INTO images (user_id, file_name, file_path) VALUES (:user_id, :file_name, :file_path)");
+				$query = $connection->prepare("INSERT INTO images (user_id, file_name, file_path, title) VALUES (:user_id, :file_name, :file_path, :title)");
 				$query->bindParam("user_id", $user_id, PDO::PARAM_STR);
 				$query->bindParam("file_name", $file_name, PDO::PARAM_STR);
 				$query->bindParam("file_path", $file_path, PDO::PARAM_STR);
+				$query->bindParam("title", $title, PDO::PARAM_STR);
 				$query->execute();
 
 				echo "Файл загружен на сервер!";
@@ -80,6 +82,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 					</label>
 					<input type="file" accept="image/jpg, image/png, image/jpeg" id="input-file" name="image">
 
+					<div class="input-box">
+	                    <input type="text" placeholder="Название файла" name="title" required>
+	                    <i class='bx bxs-user'></i>
+	                </div>
+	                
 					<input type="submit" value="Загрузить изображение">
 				</form>
 			</div>

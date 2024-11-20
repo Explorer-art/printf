@@ -17,8 +17,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $email = trim(strip_tags(htmlspecialchars($_POST["email"])));
 
-
-
     $emailQuery = $connection->prepare("SELECT * FROM users WHERE email = ? AND id != ?");
     $emailQuery->execute([$email, $user_id]);
 
@@ -26,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $data = [
             "success" => false,
             "message" => "Электронная почта уже используется другим пользователем"
-        ]
+        ];
 
         header("Content-Type: application/json; charset=utf-8");
         http_response_code(400);
@@ -39,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $data = [
             "success" => true,
             "message" => "Имя пользователя успешно обновлено!"
-        ]
+        ];
 
         header("Content-Type: application/json; charset=utf-8");
         http_response_code(200);
@@ -48,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $data = [
             "success" => false,
             "message" => "Ошибка обновления имени пользователя"
-        ]
+        ];
 
         header("Content-Type: application/json; charset=utf-8");
         http_response_code(500);
@@ -61,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $data = [
             "success" => true,
             "message" => "Электронная почта успешно обновлена!"
-        ]
+        ];
 
         header("Content-Type: application/json; charset=utf-8");
         http_response_code(200);
@@ -70,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $data = [
             "success" => false,
             "message" => "Ошибка обновления электронной почты"
-        ]
+        ];
 
         header("Content-Type: application/json; charset=utf-8");
         http_response_code(500);

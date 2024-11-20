@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $data = [
                 "success" => true,
                 "message" => "Успешная авторизация!"
-            ]
+            ];
 
             header("Content-Type: application/json; charset=utf-8");
             header("Location: profile.php");
@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $data = [
                 "success" => false,
                 "message" => "Имя пользователя или пароль неверный!"
-            ]
+            ];
 
             header("Content-Type: application/json; charset=utf-8");
             http_response_code(400);
@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $data = [
                 "success" => false,
                 "message" => "Имя пользователя или пароль неверный!"
-            ]
+            ];
 
         header("Content-Type: application/json; charset=utf-8");
         http_response_code(400);

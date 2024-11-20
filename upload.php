@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		$data = [
             "success" => false,
             "message" => "Загружать файлы можно только авторизированным пользователям"
-        ]
+        ];
 
         header("Content-Type: application/json; charset=utf-8");
         http_response_code(401);

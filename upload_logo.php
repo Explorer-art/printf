@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (move_uploaded_file($logo_file["tmp_name"], $target_file))
         {
             $query = $connection->prepare("UPDATE users SET logo = ? WHERE id = ?");
-            if ($query->execute([$target_file, $users_id])) {
+            if ($query->execute([$target_file, $user_id])) {
                 echo "Аватар успешно обновлен!";
             } else {
                 echo "Ошибка при обновлении аватара.";

@@ -3,7 +3,7 @@ session_start();
 include 'db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $users_id = $_SESSION['users_id'];
+    $user_id = $_SESSION['user_id'];
     $logo_file = $_FILES['logo'];
 
     if (isset($logo_file) and $logo_file['error'] === UPLOAD_ERR_OK) {
@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if (move_uploaded_file($logo_file["tmp_name"], $target_file))
         {
-            $query = $connection->prepare("UPDATE profiles SET logo = ? WHERE id = ?");
+            $query = $connection->prepare("UPDATE users SET logo = ? WHERE id = ?");
             if ($query->execute([$target_file, $users_id])) {
                 echo "Аватар успешно обновлен!";
             } else {

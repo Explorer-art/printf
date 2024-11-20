@@ -49,14 +49,10 @@ label i {
     margin-right: 10px; /* Расстояние между иконкой и текстом */
 }
 
-input {
+.input-box input {
     display: none;
 }
 
 label:hover {
     background-color: rgba(0, 138, 169, 0.8);
-}
-
-input {
-    display: none;
 }

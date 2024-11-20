@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             die("Изображение уже существует.");
         }
 
-        if ($logo_file["size"] > 500000) {
+        if ($logo_file["size"] > 1000000) {
             die("Файл слишком большой.");
         }
 

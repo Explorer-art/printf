@@ -16,7 +16,7 @@ if(!$user){
     $data = [
         "success" => false,
         "message" => "Пользователь не найден"
-    ]
+    ];
 
     header("Content-Type: application/json; charset=utf-8");
     http_response_code(200);

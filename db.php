@@ -1,7 +1,7 @@
 <?php
 define("HOST", "localhost");
 define("USER", "root");
-define("PASSWORD", "password");
+define("PASSWORD", "pass");
 define("DATABASE", "db");
 try {
     $connection = new PDO("mysql:host=" . HOST . ";dbname=" . DATABASE, USER, PASSWORD);

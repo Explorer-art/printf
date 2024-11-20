@@ -7,16 +7,12 @@
     font-family: 'poppins', sans-serif;
 }
 
-body {
-    overflow: hidden;
-    min-height: 100vh;
-}
-
 .load-form {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    overflow: hidden;
     background-color: #0d1117;
     background-size: cover;
     background-position: center;
@@ -26,7 +22,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
     width: 400px;
     height: 250px;
     background-color: #131c28;
@@ -47,6 +42,7 @@ label {
     border-radius: 50px;
     cursor: pointer;
     font-size: 1rem;
+    font-weight: bold;
 }
 
 label i {

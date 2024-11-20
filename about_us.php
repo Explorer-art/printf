@@ -22,8 +22,6 @@
 ?>
 <img src="/static/images/About.png" alt="">
 <div class="container">
-	<div class="content">
-
 		<div class="wrapper">
 			<h1>О нас</h1>
 			<p class="about">
@@ -58,7 +56,6 @@
 			</div>
 
 		</div>
-	</div>
 </div>
 </body>
 </html>

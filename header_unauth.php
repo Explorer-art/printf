@@ -1,5 +1,5 @@
 <header>
-	<div class="logo">PRINTF</div>
+	<div class="logo"><a href="index.php">PRINTF</a></div>
 	<nav>
 		<ul class="nav_links">
 			<li><a href="/">Главная</a> </li>

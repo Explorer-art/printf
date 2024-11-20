@@ -4,14 +4,7 @@ require_once("db.php");
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	if (!isset($_SESSION["user_id"])) {
-		$data = [
-            "success" => false,
-            "message" => "Загружать файлы можно только авторизированным пользователям"
-        ];
-
-        header("Content-Type: application/json; charset=utf-8");
-        http_response_code(401);
-        echo json_encode($data);
+		echo "Загружать файлы можно только авторизированным пользователям.";
 		exit();
 	}
 
@@ -49,33 +42,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 				$query->bindParam("title", $title, PDO::PARAM_STR);
 				$query->execute();
 
-				$data = [
-		            "success" => true,
-		            "message" => "Файл загружен на сервер!"
-		        ];
-
-		        header("Content-Type: application/json; charset=utf-8");
-		        http_response_code(200);
-		        echo json_encode($data);
+				echo "Файл загружен на сервер!";
+				http_response_code(200);
 			} else {
-				$data = [
-		            "success" => false,
-		            "message" => "Ошибка при загрузке файлов"
-		        ];
-
-		        header("Content-Type: application/json; charset=utf-8");
-		        http_response_code(500);
-		        echo json_encode($data);
+				echo "Ошибка при загрузке файлов.";
+				http_response_code(500);
+				exit();
 			}
 		} else {
-			$data = [
-				"success" => false,
-				"message" => "Ошибка! Неподдерживаемый тип файла"
-			];
-
-			header("Content-Type: application/json; charset=utf-8");
+			echo "Ошибка! Неподдерживаемый тип файла.";
 			http_response_code(400);
-			echo json_encode($data);
+			exit();
 		}
 	}
 } else {
@@ -89,7 +66,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/static/styles/header_style.css">
 	<link rel="stylesheet" href="/static/styles/upload_style.css">
-	<title>Upload</title>
+	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+	<title>Login</title>
 </head>
 
 <body>
@@ -102,15 +80,28 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	?>
 	
 	<div class="load-form">
-		<form enctype="multipart/form-data" action="upload.php" method="post">
+		<form action="upload.php" method="post">
 			<div class="load-file">
-				<form>
-					<input type="file" accept="image/jpg, image/png, image/jpeg" id="input-file" name="image">
-					<input type="text" placeholder="Название файла" name="title">
-					<input type="submit" value="Загрузить изображение">
-				</form>
-			</div>
 
+				<h1>Загрузка изображений</h1>
+
+				<label class="select-img" for="input-file">
+					<i class='bx bx-image-add'></i> Выберите изображение
+				</label>
+
+				<input type="file" accept="image/jpg,
+				image/png, image/jpeg" id="input-file" name="image">
+
+				<textarea class="text" maxlength="64" placeholder="Название" ></textarea>
+
+				<label class="load" for="input-load">
+					<i class='bx bxs-cloud-upload'></i>
+					Загрузить
+				</label>
+
+				<input type="submit" id="input-load">
+
+			</div>
 		</form>
 	</div>
 </body>

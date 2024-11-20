@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $logo_file = $_FILES['logo'];
 
     if (isset($logo_file) and $logo_file['error'] === UPLOAD_ERR_OK) {
-        $target_dir = "/home/webadmin/printf/logo";
+        $target_dir = "/home/webadmin/printf/logo/";
         $target_file = $target_dir . basename($logo_file["name"]);
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 

@@ -25,7 +25,9 @@ if(!$user){
 }
 ?>
 
-<h1>Профиль пользователя</h1>
+
+<h1>Профиль пользователя</h1>]
+<img src="<?php echo htmlspecialchars($user['logo']); ?>" alt="logo" style="width: 100px;height: 100px;">
 <p>Имя: <?= htmlspecialchars($user['username']) ?></p>
 <p>Почта: <?= htmlspecialchars($user['email']) ?></p>
 <a href = "edit_profile.php">Редактировать профиль</a>

@@ -18,6 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim(strip_tags(htmlspecialchars($_POST["email"])));
 
 
+
     $emailQuery = $connection->prepare("SELECT * FROM users WHERE email = ? AND id != ?");
     $emailQuery->execute([$email, $user_id]);
 
@@ -83,7 +84,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <h1>Редактировать профиль</h1>
-<form action="edit_profile.php" method="post">
+
+<form action="upload_logo.php" method="post" enctype="multipart/form-data">
+
+<label for="logo"> Выберите аватар: </label>
+<input type="file" name="logo" id="logo" accept="image/*" required>
+<button type="submit">Сохранить аватар: </button>
+</form>>
+
+<form action="edit_profile.php" method="post" >
+
     <label for="username">Имя:</label>
     <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($user["username"]); ?>">
 

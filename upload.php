@@ -16,7 +16,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	}
 
 	if (isset($_FILES["image"]) && $_FILES["image"]["error"] === UPLOAD_ERR_OK) {
-		$image_title = $_POST["title"];
+		$title = $_POST["title"];
+
+		if ($title == "") {
+			$title = "Unknown title";
+		}
+
 		$upload_dir = "uploads/";
 
 		$file_tmp_path = $_FILES["image"]["tmp_name"];
@@ -100,16 +105,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		<form enctype="multipart/form-data" action="upload.php" method="post">
 			<div class="load-file">
 				<form>
-					<label for="input-file">
-						<i class='bx bx-image-add'></i> Выберите изображение
-					</label>
 					<input type="file" accept="image/jpg, image/png, image/jpeg" id="input-file" name="image">
-
-					<div class="input-box">
-	                    <input type="text" placeholder="Название файла" name="title" required>
-	                    <i class='bx bxs-user'></i>
-	                </div>
-	                
+					<input type="text" placeholder="Название файла" name="title">
 					<input type="submit" value="Загрузить изображение">
 				</form>
 			</div>

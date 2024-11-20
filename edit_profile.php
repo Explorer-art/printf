@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <form action="upload_logo.php" method="post" enctype="multipart/form-data">
 
-<label> for="logo">Выберите аватар: </label>
+<label for="logo"> Выберите аватар: </label>
 <input type="file" name="logo" id="logo" accept="image/*" required>
 <button type="submit">Сохранить аватар: </button>
 </form>>

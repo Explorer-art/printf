@@ -135,4 +135,6 @@ if(isset($_SESSION["user_id"]) and !isset($_GET["user"])) {
     </main>
     </body>
     </html>
+<?php
 }
+?>

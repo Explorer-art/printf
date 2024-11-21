@@ -37,23 +37,31 @@ if (isset($_SESSION["user_id"]) && !isset($_GET["user"])) {
     <main>
       <div class="container">
         <div class="wrapper">
-          <form action="" method="">
             <h1>Профиль</h1>
             <div class="logo">
-              <img src="<?php echo htmlspecialchars($user["logo"]) ?>">
-              <h2><?= htmlspecialchars($user["username"]) ?></h2>
-              <p class="description">Обо мне</p>
+                <img src="<?php echo htmlspecialchars($user["logo"]) ?>">
+                <h2><?= htmlspecialchars($user["username"]) ?></h2>
+                <p class="description">Обо мне</p>
             </div>
+
+            <?php
+                $query = $connection->prepare("SELECT file_path FROM images WHERE user_id = ?");
+                $query->execute([$user_id]);
+                $images = $query->fetchAll();
+            ?>
 
             <div class="container-image-wrapper">
               <div class="container-image">
                 <div class="user-gallery">
-                  <div class="img1"></div>
-                  <div class="img2"></div>
-                  <div class="img3"></div>
-                  <div class="img4"></div>
-                  <div class="img5"></div>
-                  <div class="img6"></div>
+                    <?php if ($images) {
+                        foreach ($images as $image) {
+                            echo '<img src="' . $image . '">'
+                        }
+                    } else {
+                    ?>
+                        <p>Изображений нет</p>
+                    }
+                    ?>
                 </div>
               </div>
             </div>
@@ -61,7 +69,6 @@ if (isset($_SESSION["user_id"]) && !isset($_GET["user"])) {
             <div class="edit-profile">
               <a href="edit_profile.php">Редактировать профиль</a>
             </div>
-          </form>
         </div>
       </div>
     </main>

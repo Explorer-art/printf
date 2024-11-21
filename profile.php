@@ -2,21 +2,13 @@
 session_start();
 include "db.php";
 
-<<<<<<< Updated upstream
 if(isset($_SESSION["user_id"]) and !isset($_GET["user"])) {
     $user_id = $_SESSION["user_id"];
-=======
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit();
-}
->>>>>>> Stashed changes
 
     $query = $connection->prepare("SELECT * FROM users WHERE id = ?");
     $query->execute([$user_id]);
     $user = $query->fetch();
 
-<<<<<<< Updated upstream
     if (!$user) {
         $data = [
             "success" => false,

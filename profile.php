@@ -55,7 +55,7 @@ if (isset($_SESSION["user_id"]) && !isset($_GET["user"])) {
                 <div class="user-gallery">
                     <?php if ($images) {
                         foreach ($images as $image) {
-                            echo '<img src="' . $image . '">'
+                            echo '<img src="' . $image . '">';
                         }
                     } else {
                     ?>

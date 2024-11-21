@@ -9,13 +9,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	}
 
 	if (isset($_FILES["image"]) && $_FILES["image"]["error"] === UPLOAD_ERR_OK) {
-		$title = $_POST["title"];
-
-		if ($title == "") {
+		$upload_dir = "uploads/";
+		
+		if (isset($_POST["title"])) {
+			$title = $_POST["title"];
+		} else {
 			$title = "Unknown title";
 		}
-
-		$upload_dir = "uploads/";
 
 		$file_tmp_path = $_FILES["image"]["tmp_name"];
 		$file_name = $_FILES["image"]["name"];

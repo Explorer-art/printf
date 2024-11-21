@@ -25,10 +25,50 @@ if(!$user){
 }
 ?>
 
-<h1>Профиль пользователя</h1>
-<img src="<?php echo htmlspecialchars($user['logo']); ?>" alt="logo" style="width: 100px;height: 100px;">
-<p>Имя: <?= htmlspecialchars($user['username']) ?></p>
-<p>Почта: <?= htmlspecialchars($user['email']) ?></p>
-<a href = "edit_profile.php">Редактировать профиль</a>
-<br>
-<a href = "index.php">Выйти</a>
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="static/styles/profile_style.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <title>Document</title>
+</head>
+<body>
+<main>
+  <div class="container">
+    <div class="wrapper">
+      <form action="" method="">
+        <h1>Профиль</h1>
+        <div class="logo">
+          <img src="<?php echo htmlspecialchars($user['logo']) ?>">
+          <h2><?= htmlspecialchars($user['username']) ?></h2>
+          <p class="mail"><?= htmlspecialchars($user['email']) ?></p>
+          <p class="description">Обо мне</p>
+        </div>
+
+        <div class="container-image-wrapper">
+          <div class="container-image">
+            <div class="user-gallery">
+              <div class="img1"></div>
+              <div class="img2"></div>
+              <div class="img3"></div>
+              <div class="img4"></div>
+              <div class="img5"></div>
+              <div class="img6"></div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="edit-profile">
+          <a href="edit_profile.php">Редактировать профиль</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+</body>
+</html>

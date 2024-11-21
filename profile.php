@@ -2,7 +2,7 @@
 session_start();
 include "db.php";
 
-if (isset($_SESSION["user_id"]) && (!isset($_GET["user"] || $_GET["user"] == $_SESSION["user_id"])) {
+if (isset($_SESSION["user_id"]) && (!isset($_GET["user"]) || $_GET["user"] == $_SESSION["user_id"])) {
     $user_id = $_SESSION["user_id"];
 
     $query = $connection->prepare("SELECT * FROM users WHERE id = ?");

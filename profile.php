@@ -42,7 +42,6 @@ if (isset($_SESSION["user_id"]) && !isset($_GET["user"])) {
             <div class="logo">
               <img src="<?php echo htmlspecialchars($user["logo"]) ?>">
               <h2><?= htmlspecialchars($user["username"]) ?></h2>
-              <p class="mail"><?= htmlspecialchars($user["email"]) ?></p>
               <p class="description">Обо мне</p>
             </div>
 

@@ -60,19 +60,12 @@ h2 {
     font-size: 1.3rem;
 }
 
-.mail {
-    position: absolute;
-    top: 175px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: rgba(255, 255, 255, .6);
-}
-
 .description {
     position: absolute;
     top: 210px;
     left: 50%;
     transform: translateX(-50%);
+    color: rgba(255, 255, 255, .6);
 }
 
 .edit-profile a {

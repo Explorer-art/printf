@@ -60,6 +60,7 @@ if (isset($_SESSION["user_id"]) && !isset($_GET["user"])) {
                     } else {
                     ?>
                         <p>Изображений нет</p>
+                    <?php
                     }
                     ?>
                 </div>
@@ -74,9 +75,9 @@ if (isset($_SESSION["user_id"]) && !isset($_GET["user"])) {
     </main>
     </body>
     </html>
+
 <?php
-}
-elseif (isset($_GET["user"])) {
+} elseif (isset($_GET["user"])) {
     $user_id = $_GET["user"];
 
     $query = $connection->prepare("SELECT * FROM users WHERE id = ?");
@@ -148,6 +149,6 @@ elseif (isset($_GET["user"])) {
     </html>
 <?php
 } else {
-    echo "Ошибка! Вы не авторизованы, по этому вы не можете посмотретб свой профиль.";
+    echo "Ошибка! Вы не авторизованы, по этому вы не можете посмотреть свой профиль.";
 }
 ?>

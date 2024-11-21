@@ -1,6 +1,11 @@
 <?php
 session_start();
 
+if(!isset($_SESSION['user_id'] )){
+    header("Location: profile.php");
+    exit();
+}
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     require_once("db.php");
 

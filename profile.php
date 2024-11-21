@@ -31,7 +31,7 @@ if (isset($_SESSION["user_id"]) && !isset($_GET["user"])) {
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="static/styles/profile_style.css">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-        <title>Профиль <?php echo htmlspecialchars($user['username']) ?></title>
+        <title>Профиль <?php echo htmlspecialchars($user["username"]) ?></title>
     </head>
     <body>
     <main>
@@ -44,8 +44,8 @@ if (isset($_SESSION["user_id"]) && !isset($_GET["user"])) {
                             <img class="personLogo" src="<?php echo htmlspecialchars($user["logo"]) ?>" alt="Логотип">
                         </div>
                     </article>
-                    <h2><?= htmlspecialchars($user['username']) ?></h2>
-                    <p class="mail"><?= htmlspecialchars($user['email']) ?></p>
+                    <h2><?= htmlspecialchars($user["username"]) ?></h2>
+                    <p class="mail"><?= htmlspecialchars($user["email"]) ?></p>
                     <p class="description">Обо мне</p>
                 </div>
 
@@ -99,7 +99,7 @@ if (isset($_SESSION["user_id"]) && !isset($_GET["user"])) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="static/styles/profile_style.css">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-        <title>Профиль <?php echo htmlspecialchars($user['username']) ?></title>
+        <title>Профиль <?php echo htmlspecialchars($user["username"]) ?></title>
     </head>
     <body>
     <main>
@@ -107,8 +107,8 @@ if (isset($_SESSION["user_id"]) && !isset($_GET["user"])) {
             <div class="wrapper">
                 <h1>Профиль</h1>
                 <div class="logo">
-                    <img src="<?php echo htmlspecialchars($user['logo']) ?>" alt="Логотип">
-                    <h2><?= htmlspecialchars($user['username']) ?></h2>
+                    <img src="<?php echo htmlspecialchars($user["logo"]) ?>" alt="Логотип">
+                    <h2><?= htmlspecialchars($user["username"]) ?></h2>
                     <p class="mail"><?= htmlspecialchars($user['email']) ?></p>
                     <p class="description">Обо мне</p>
                 </div>

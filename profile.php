@@ -2,7 +2,7 @@
 session_start();
 include "db.php";
 
-if(isset($_SESSION["user_id"]) and !isset($_GET["user"])) {
+if (isset($_SESSION["user_id"]) && !isset($_GET["user"])) {
     $user_id = $_SESSION["user_id"];
 
     $query = $connection->prepare("SELECT * FROM users WHERE id = ?");
@@ -27,48 +27,42 @@ if(isset($_SESSION["user_id"]) and !isset($_GET["user"])) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport"
-            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="static/styles/profile_style.css">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-        <title>Profile <? htmlspecialchars($user['username']) ?></title>
+        <title>Profile <?php echo htmlspecialchars($user['username']); ?></title>
     </head>
     <body>
     <main>
-      <div class="container">
-        <div class="wrapper">
-          <form action="" method="">
-            <h1>Профиль</h1>
-            <div class="logo">
-              <img src="<?php echo htmlspecialchars($user['logo']) ?>">
-              <h2><?= htmlspecialchars($user['username']) ?></h2>
-              <p class="mail"><?= htmlspecialchars($user['email']) ?></p>
-              <p class="description">Обо мне</p>
-            </div>
-
-            <div class="container-image-wrapper">
-              <div class="container-image">
-                <div class="user-gallery">
-                  <div class="img1"></div>
-                  <div class="img2"></div>
-                  <div class="img3"></div>
-                  <div class="img4"></div>
-                  <div class="img5"></div>
-                  <div class="img6"></div>
+        <div class="container">
+            <div class="wrapper">
+                <h1>Профиль</h1>
+                <div class="logo">
+                    <img src="<?php echo htmlspecialchars($user['logo']) ?>" alt="Логотип">
+                    <h2><?= htmlspecialchars($user['username']) ?></h2>
+                    <p class="mail"><?= htmlspecialchars($user['email']) ?></p>
+                    <p class="description">Обо мне</p>
                 </div>
-              </div>
-            </div>
 
-            <div class="edit-profile">
-              <a href="edit_profile.php">Редактировать профиль</a>
+                <div class="container-image-wrapper">
+                    <div class="container-image">
+                        <div class="user-gallery">
+                            <!-- Здесь можно добавить фотографии -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="edit-profile">
+                    <a href="edit_profile.php">Редактировать профиль</a>
+                </div>
             </div>
-          </form>
         </div>
-      </div>
     </main>
     </body>
     </html>
-<?php
+
+    <?php
 } elseif (isset($_GET["user"])) {
     $user_id = $_GET["user"];
 
@@ -87,54 +81,59 @@ if(isset($_SESSION["user_id"]) and !isset($_GET["user"])) {
         echo json_encode($data);
         exit();
     }
+
+    // Получаем фотографии пользователя
+    $photosQuery = $connection->prepare("SELECT file_path FROM images WHERE user_id = ?");
+    $photosQuery->execute([$user_id]);
+    $photos = $photosQuery->fetchAll();
     ?>
 
     <!doctype html>
     <html lang="ru">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport"
-            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="static/styles/profile_style.css">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-        <title>Profile <? htmlspecialchars($user['username']) ?></title>
+        <title>Профиль</title>
     </head>
     <body>
     <main>
-      <div class="container">
-        <div class="wrapper">
-          <form action="" method="">
-            <h1>Профиль</h1>
-            <div class="logo">
-              <img src="<?php echo htmlspecialchars($user['logo']) ?>">
-              <h2><?= htmlspecialchars($user['username']) ?></h2>
-              <p class="mail"><?= htmlspecialchars($user['email']) ?></p>
-              <p class="description">Обо мне</p>
-            </div>
-
-            <div class="container-image-wrapper">
-              <div class="container-image">
-                <div class="user-gallery">
-                  <div class="img1"></div>
-                  <div class="img2"></div>
-                  <div class="img3"></div>
-                  <div class="img4"></div>
-                  <div class="img5"></div>
-                  <div class="img6"></div>
+        <div class="container">
+            <div class="wrapper">
+                <h1>Профиль</h1>
+                <div class="logo">
+                    <img src="<?php echo htmlspecialchars($user['logo']) ?>" alt="Логотип">
+                    <h2><?= htmlspecialchars($user['username']) ?></h2>
+                    <p class="mail"><?= htmlspecialchars($user['email']) ?></p>
+                    <p class="description">Обо мне</p>
                 </div>
-              </div>
-            </div>
 
-            <div class="edit-profile">
-              <a href="edit_profile.php">Редактировать профиль</a>
+                <div class="container-image-wrapper">
+                    <div class="container-image">
+                        <div class="user-gallery">
+                            <?php if ($photos): ?>
+                                <?php foreach ($photos as $photo): ?>
+                                    <div class="photo-item">
+                                        <img src="<?php echo htmlspecialchars($photo['file_path']); ?>" alt="User Photo" style="width:100px;height:auto;">
+                                    </div>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <p>Фотографии отсутствуют.</p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="edit-profile">
+                    <a href="edit_profile.php">Редактировать профиль</a>
+                </div>
             </div>
-          </form>
         </div>
-      </div>
     </main>
     </body>
     </html>
-<?php
+
+    <?php
 }
 ?>

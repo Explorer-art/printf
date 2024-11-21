@@ -75,7 +75,8 @@ if (isset($_SESSION["user_id"]) && !isset($_GET["user"])) {
     </body>
     </html>
 <?php
-} elseif (isset($_GET["user"])) {
+}
+elseif (isset($_GET["user"])) {
     $user_id = $_GET["user"];
 
     $query = $connection->prepare("SELECT * FROM users WHERE id = ?");

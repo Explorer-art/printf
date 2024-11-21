@@ -52,7 +52,7 @@ if (isset($_SESSION["user_id"]) && !isset($_GET["user"])) {
                 <div class="container-image-wrapper">
                     <div class="container-image">
                         <div class="user-gallery">
-                            <!-- Здесь можно добавить фотографии -->
+                            <div class="photo"> </div>
                         </div>
                     </div>
                 </div>

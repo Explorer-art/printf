@@ -3,7 +3,6 @@ session_start();
 include 'db.php';
 
 if(!isset($_SESSION['user_id'] )){
-    header("Location: login.php");
     exit();
 }
 
@@ -34,7 +33,7 @@ if(!$user){
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="static/styles/profile_style.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <title>Document</title>
+  <title>Profile</title>
 </head>
 <body>
 <main>
@@ -61,7 +60,6 @@ if(!$user){
             </div>
           </div>
         </div>
-
 
         <div class="edit-profile">
           <a href="edit_profile.php">Редактировать профиль</a>

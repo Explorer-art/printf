@@ -10,6 +10,8 @@
 </head>
 <body>
 	<?php
+	session_start();
+	
 	if (isset($_SESSION["user_id"])) {
 		require_once("header_auth.php");
 	} else {

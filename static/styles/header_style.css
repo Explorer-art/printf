@@ -27,7 +27,7 @@ header {
     position: fixed;
 }
 
-.logo {
+.logo a {
     font-weight: 700;
     cursor: pointer;
     font-size: 1.5rem;

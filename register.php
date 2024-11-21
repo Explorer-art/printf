@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if(!isset($_SESSION['user_id'] )){
+if(isset($_SESSION['user_id'] )){
     header("Location: profile.php");
     exit();
 }
@@ -13,6 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = $_POST["email"];
     $password = $_POST["password"];
     $password_hash = password_hash($password, PASSWORD_BCRYPT); # Хеширование пароля
+    $default_logo = "logo/user-img.svg";
 
     if (strlen($username) < 3) {
         $data = [
@@ -71,22 +72,42 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit();
     }
 
-    $query = $connection->prepare("INSERT INTO users(username,email,password) VALUES (:username,:email,:password_hash)"); # Добавляем нового пользователя
+    $query = $connection->prepare("INSERT INTO users(username, email, password, logo) VALUES (:username, :email, :password_hash, :logo)"); # Добавляем нового пользователя
     $query->bindParam("username", $username, PDO::PARAM_STR);
     $query->bindParam("email", $email, PDO::PARAM_STR);
     $query->bindParam("password_hash", $password_hash, PDO::PARAM_STR);
+    $query->bindParam("logo", $default_logo, PDO::PARAM_STR);
     $result = $query->execute();
         
     if ($result) {
-        // $data = [
-        //     "success" => true,
-        //     "message" => "Успешная регистрация!"
-        // ];
+        $query = $connection->prepare("SELECT * FROM users WHERE username = :username LIMIT 1");
+        $query->bindParam("username", $username, PDO::PARAM_STR);
+        $query->execute();
 
-        header("Content-Type: application/json; charset=utf-8");
-        header("Location: profile.php");
-        http_response_code(200);
-        // echo json_encode($data);
+        if ($query->rowCount() == 1) {
+            $user = $query->fetch();
+
+            $_SESSION["user_id"] = $user["id"];
+
+            // $data = [
+            //     "success" => true,
+            //     "message" => "Успешная регистрация!"
+            // ];
+
+            header("Content-Type: application/json; charset=utf-8");
+            header("Location: profile.php");
+            http_response_code(200);
+            // echo json_encode($data);
+        } else {
+            $data = [
+                "success" => false,
+                "message" => "Ошибка при регистрации нового пользователя!"
+            ];
+
+            header("Content-Type: application/json; charset=utf-8");
+            http_response_code(400);
+            echo json_encode($data);
+        }
     } else {
         $data = [
             "success" => false,

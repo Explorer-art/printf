@@ -63,7 +63,18 @@ main {
     top: 50%;
     transform: translateY(-50%);
     font-size: 1.3rem;
+}
 
+.input-box i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.3rem;
+}
+
+#toggle-password {
+    cursor: pointer;
 }
 
 .wrapper .remember-forgot {

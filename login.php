@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if(!isset($_SESSION['user_id'] )){
+if(isset($_SESSION['user_id'] )){
     header("Location: profile.php");
     exit();
 }
@@ -84,8 +84,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                   </div>
   
                   <div class="input-box">
-                      <input type="password" placeholder="Пароль" name="password" required>
-                      <i class='bx bxs-lock-alt'></i>
+                      <input id="password" type="password" placeholder="Пароль" name="password" required>
+                        <i class='bx bxs-lock-alt' id="toggle-password"></i>
+
                   </div>
   
                   <div class="remember-forgot">
@@ -96,11 +97,30 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                   <button type="submit" class="btn">Вход</button>
   
                   <div class="register-link">
-                      <p>Нет аккаунта? <a href="register.php">Регистрация</a></p>
+                      <p>Нет аккаунта? <a href="register.html">Регистрация</a></p>
                   </div>
               </form>
           </div>
       </main>
+
+        <script>
+            const passwordInput = document.getElementById('password');
+            const togglePassword = document.getElementById('toggle-password');
+
+            togglePassword.addEventListener('click', () => {
+
+                const isPassword = passwordInput.getAttribute('type') === 'password';
+                passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
+
+                if (isPassword) {
+                    togglePassword.classList.remove('bxs-lock-alt');
+                    togglePassword.classList.add('bxs-lock-open-alt');
+                } else {
+                    togglePassword.classList.remove('bxs-lock-open-alt');
+                    togglePassword.classList.add('bxs-lock-alt');
+                }
+            });
+        </script>
     </body>
 </html>
 <?php

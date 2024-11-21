@@ -2,7 +2,7 @@
 session_start();
 include "db.php";
 
-if (isset($_SESSION["user_id"]) && !isset($_GET["user"])) {
+if (isset($_SESSION["user_id"]) && (!isset($_GET["user"] || $_GET["user"] == $_SESSION["user_id"])) {
     $user_id = $_SESSION["user_id"];
 
     $query = $connection->prepare("SELECT * FROM users WHERE id = ?");
@@ -93,11 +93,6 @@ if (isset($_SESSION["user_id"]) && !isset($_GET["user"])) {
         echo json_encode($data);
         exit();
     }
-
-    // Получаем фотографии пользователя
-    $photosQuery = $connection->prepare("SELECT file_path FROM images WHERE user_id = ?");
-    $photosQuery->execute([$user_id]);
-    $photos = $photosQuery->fetchAll();
     ?>
 
     <!DOCTYPE HTML>

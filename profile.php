@@ -31,7 +31,7 @@ if (isset($_SESSION["user_id"]) && !isset($_GET["user"])) {
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="static/styles/profile_style.css">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-        <title>Profile <?= htmlspecialchars($user["username"]) ?></title>
+        <title>Профиль <?= htmlspecialchars($user["username"]) ?></title>
     </head>
     <body>
     <main>

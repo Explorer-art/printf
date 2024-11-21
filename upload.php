@@ -80,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	?>
 	
 	<div class="load-form">
-		<form action="upload.php" method="post">
+		<form enctype="multipart/form-data" action="upload.php" method="post">
 			<div class="load-file">
 
 				<h1>Загрузка изображений</h1>

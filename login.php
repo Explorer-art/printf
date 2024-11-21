@@ -18,15 +18,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (password_verify($password, $user["password"])) {
             $_SESSION["user_id"] = $user["id"]; # Сохраняем сессию пользователя
             
-            $data = [
-                "success" => true,
-                "message" => "Успешная авторизация!"
-            ];
+            // $data = [
+            //     "success" => true,
+            //     "message" => "Успешная авторизация!"
+            // ];
 
             header("Content-Type: application/json; charset=utf-8");
             header("Location: profile.php");
             http_response_code(200);
-            echo json_encode($data);
+            // echo json_encode($data);
         } else {
             $data = [
                 "success" => false,

@@ -65,6 +65,10 @@ if (isset($_SESSION["user_id"]) && !isset($_GET["user"])) {
                 </div>
               </div>
             </div>
+
+            <div class="edit-profile">
+              <a href="edit_profile.php">Редактировать профиль</a>
+            </div>
         </div>
       </div>
     </main>
@@ -139,10 +143,6 @@ if (isset($_SESSION["user_id"]) && !isset($_GET["user"])) {
                     ?>
                 </div>
               </div>
-            </div>
-
-            <div class="edit-profile">
-              <a href="edit_profile.php">Редактировать профиль</a>
             </div>
         </div>
       </div>

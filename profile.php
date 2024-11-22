@@ -29,6 +29,7 @@ if (isset($_SESSION["user_id"]) && (!isset($_GET["user"]) || $_GET["user"] == $_
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="static/styles/profile_style.css">
+        <link rel="stylesheet" href="/static/styles/header_style.css">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <title>Профиль <?= htmlspecialchars($user["username"]) ?></title>
     </head>

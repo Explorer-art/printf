@@ -33,6 +33,13 @@ if (isset($_SESSION["user_id"]) && (!isset($_GET["user"]) || $_GET["user"] == $_
         <title>Профиль <?= htmlspecialchars($user["username"]) ?></title>
     </head>
     <body>
+        <?php
+            if (isset($_SESSION["user_id"])) {
+                require_once("header_auth.php");
+            } else {
+                require_once("header_unauth.php");
+            }
+        ?>
     <main>
         <div class="container">
             <div class="wrapper">

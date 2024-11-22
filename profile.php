@@ -114,7 +114,7 @@ if (isset($_SESSION["user_id"]) && (!isset($_GET["user"]) || $_GET["user"] == $_
                 <div class="logo">
                     <img src="<?php echo htmlspecialchars($user["logo"]) ?>">
                     <h2><?= htmlspecialchars($user["username"]) ?></h2>
-                    <p class="description"><?= htmlspecialchars($user["description"]) ?></p> 
+                    <p class="description"><?= htmlspecialchars($user["description"]) ?></p>
                 </div>
 
                 <?php

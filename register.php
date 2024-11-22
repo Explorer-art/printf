@@ -89,15 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             $_SESSION["user_id"] = $user["id"];
 
-            // $data = [
-            //     "success" => true,
-            //     "message" => "Успешная регистрация!"
-            // ];
-
-            // header("Content-Type: application/json; charset=utf-8");
             header("Location: profile.php");
-            http_response_code(200);
-            // echo json_encode($data);
         } else {
             $data = [
                 "success" => false,

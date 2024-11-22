@@ -5,7 +5,6 @@ if (isset($_SESSION["user_id"])) {
 	session_destroy();
 
 	header("Location: index.php");
-	http_response_code(200);
 } else {
 	$data = [
 		"success" => false,

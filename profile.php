@@ -35,11 +35,11 @@ if (isset($_SESSION["user_id"]) && (!isset($_GET["user"]) || $_GET["user"] == $_
     </head>
     <body>
         <?php
-            if (isset($_SESSION["user_id"])) {
-                require_once("header_auth.php");
-            } else {
-                require_once("header_unauth.php");
-            }
+        if (isset($_SESSION["user_id"])) {
+            require_once("header_auth.php");
+        } else {
+            require_once("header_unauth.php");
+        }
         ?>
     <main>
         <div class="container">
@@ -146,10 +146,6 @@ if (isset($_SESSION["user_id"]) && (!isset($_GET["user"]) || $_GET["user"] == $_
                             ?>
                         </div>
                     </div>
-                </div>
-
-                <div class="edit-profile">
-                    <a href="edit_profile.php">Редактировать профиль</a>
                 </div>
             </div>
         </div>

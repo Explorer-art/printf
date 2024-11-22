@@ -3,10 +3,15 @@ session_start();
 
 if (isset($_SESSION["user_id"])) {
 	session_destroy();
-	
-	echo "Вы вышли из аккаунта!";
+
+	header("Location: index.php");
 	http_response_code(200);
 } else {
-	echo "Вы не авторизованы";
+	$data = [
+		"success" => false,
+		"message" => "Имя пользователя должно быть не менее 3 символов"
+	];
+
+	header("Content-Type: application/json; charset=utf-8");
 	http_response_code(400);
 }

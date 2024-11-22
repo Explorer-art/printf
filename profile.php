@@ -1,7 +1,7 @@
 <?php
 session_start();
 include "db.php";
-
+//asdddasd
 if (isset($_SESSION["user_id"]) && (!isset($_GET["user"]) || $_GET["user"] == $_SESSION["user_id"])) {
     $user_id = $_SESSION["user_id"];
 
@@ -15,7 +15,7 @@ if (isset($_SESSION["user_id"]) && (!isset($_GET["user"]) || $_GET["user"] == $_
             "message" => "Пользователь не найден"
         ];
 
-        header("Content-Type: application/json; charset=utf-8");
+        header("Content-Type: application/json; charset=utf-8");E5tOkQnjVWOKBHHHN>
         http_response_code(200);
         echo json_encode($data);
         exit();

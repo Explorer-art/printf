@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             //     "message" => "Успешная авторизация!"
             // ];
 
-            header("Content-Type: application/json; charset=utf-8");
+            // header("Content-Type: application/json; charset=utf-8");
             header("Location: profile.php");
             http_response_code(200);
             // echo json_encode($data);

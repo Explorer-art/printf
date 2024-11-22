@@ -41,45 +41,45 @@ if (isset($_SESSION["user_id"]) && (!isset($_GET["user"]) || $_GET["user"] == $_
             require_once("header_unauth.php");
         }
         ?>
-    <main>
-        <div class="container">
-            <div class="wrapper">
-                <h1>Профиль</h1>
-                <div class="logo">
-                    <img src="<?php echo htmlspecialchars($user["logo"]) ?>">
-                    <h2><?= htmlspecialchars($user["username"]) ?></h2>
-                    <p class="description"><?= htmlspecialchars($user["description"]) ?></p> <!-- Вывод описания -->
-                </div>
+        <main>
+            <div class="container">
+                <div class="wrapper">
+                    <h1>Профиль</h1>
+                    <div class="logo">
+                        <img src="<?php echo htmlspecialchars($user["logo"]) ?>">
+                        <h2><?= htmlspecialchars($user["username"]) ?></h2>
+                        <p class="description"><?= htmlspecialchars($user["description"]) ?></p> <!-- Вывод описания -->
+                    </div>
 
-                <?php
-                $query = $connection->prepare("SELECT file_path FROM images WHERE user_id = ?");
-                $query->execute([$user_id]);
-                $images = $query->fetchAll();
-                ?>
+                    <?php
+                    $query = $connection->prepare("SELECT file_path FROM images WHERE user_id = ?");
+                    $query->execute([$user_id]);
+                    $images = $query->fetchAll();
+                    ?>
 
-                <div class="container-image-wrapper">
-                    <div class="container-image">
-                        <div class="user-gallery">
-                            <?php if ($images) {
-                                foreach ($images as $image) {
-                                    echo '<img src="' . htmlspecialchars($image["file_path"]) . '">';
+                    <div class="container-image-wrapper">
+                        <div class="container-image">
+                            <div class="user-gallery">
+                                <?php if ($images) {
+                                    foreach ($images as $image) {
+                                        echo '<img src="' . htmlspecialchars($image["file_path"]) . '">';
+                                    }
+                                } else {
+                                    ?>
+                                    <p>Изображений нет</p>
+                                    <?php
                                 }
-                            } else {
                                 ?>
-                                <p>Изображений нет</p>
-                                <?php
-                            }
-                            ?>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="edit-profile">
-                    <a href="edit_profile.php">Редактировать профиль</a>
+                    <div class="edit-profile">
+                        <a href="edit_profile.php">Редактировать профиль</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </main>
+        </main>
     </body>
     </html>
     <?php
@@ -115,41 +115,48 @@ if (isset($_SESSION["user_id"]) && (!isset($_GET["user"]) || $_GET["user"] == $_
         <title>Профиль <?= htmlspecialchars($user["username"]) ?></title>
     </head>
     <body>
-    <main>
-        <div class="container">
-            <div class="wrapper">
-                <h1>Профиль</h1>
-                <div class="logo">
-                    <img src="<?php echo htmlspecialchars($user["logo"]) ?>">
-                    <h2><?= htmlspecialchars($user["username"]) ?></h2>
-                    <p class="description"><?= htmlspecialchars($user["description"]) ?></p>
-                </div>
+        <?php
+        if (isset($_SESSION["user_id"])) {
+            require_once("header_auth.php");
+        } else {
+            require_once("header_unauth.php");
+        }
+        ?>
+        <main>
+            <div class="container">
+                <div class="wrapper">
+                    <h1>Профиль</h1>
+                    <div class="logo">
+                        <img src="<?php echo htmlspecialchars($user["logo"]) ?>">
+                        <h2><?= htmlspecialchars($user["username"]) ?></h2>
+                        <p class="description"><?= htmlspecialchars($user["description"]) ?></p>
+                    </div>
 
-                <?php
-                $query = $connection->prepare("SELECT file_path FROM images WHERE user_id = ?");
-                $query->execute([$user_id]);
-                $images = $query->fetchAll();
-                ?>
+                    <?php
+                    $query = $connection->prepare("SELECT file_path FROM images WHERE user_id = ?");
+                    $query->execute([$user_id]);
+                    $images = $query->fetchAll();
+                    ?>
 
-                <div class="container-image-wrapper">
-                    <div class="container-image">
-                        <div class="user-gallery">
-                            <?php if ($images) {
-                                foreach ($images as $image) {
-                                    echo '<img src="' . htmlspecialchars($image["file_path"]) . '">';
+                    <div class="container-image-wrapper">
+                        <div class="container-image">
+                            <div class="user-gallery">
+                                <?php if ($images) {
+                                    foreach ($images as $image) {
+                                        echo '<img src="' . htmlspecialchars($image["file_path"]) . '">';
+                                    }
+                                } else {
+                                    ?>
+                                    <p>Изображений нет</p>
+                                    <?php
                                 }
-                            } else {
                                 ?>
-                                <p>Изображений нет</p>
-                                <?php
-                            }
-                            ?>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </main>
+        </main>
     </body>
     </html>
 

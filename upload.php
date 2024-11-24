@@ -4,7 +4,14 @@ require_once("db.php");
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	if (!isset($_SESSION["user_id"])) {
-		echo "Загружать файлы можно только авторизированным пользователям.";
+		$data = [
+			"success" => false,
+			"message" => "Загружать файлы можно только авторизированным пользователям."
+		];
+
+		header("Content-Type: application/json; charset=utf-8");
+		http_response_code(400);
+		echo json_encode($data);
 		exit();
 	}
 
@@ -41,17 +48,26 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 				$query->bindParam("file_path", $file_path, PDO::PARAM_STR);
 				$query->bindParam("title", $title, PDO::PARAM_STR);
 				$query->execute();
-
-				echo "Файл загружен на сервер!";
-				http_response_code(200);
 			} else {
-				echo "Ошибка при загрузке файлов.";
-				http_response_code(500);
+				$data = [
+	                "success" => false,
+	                "message" => "Ошибка при загрузке файлов."
+	            ];
+
+	            header("Content-Type: application/json; charset=utf-8");
+	            http_response_code(500);
+	            echo json_encode($data);
 				exit();
 			}
 		} else {
-			echo "Ошибка! Неподдерживаемый тип файла.";
-			http_response_code(400);
+			$data = [
+                "success" => false,
+                "message" => "Ошибка! Неподдерживаемый тип файла."
+            ];
+
+            header("Content-Type: application/json; charset=utf-8");
+            http_response_code(400);
+            echo json_encode($data);
 			exit();
 		}
 	}

@@ -24,6 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $_SESSION["user_id"] = $user["id"]; # Сохраняем сессию пользователя
             
             header("Location: profile.php");
+            header("Content-Type: application/json; charset=utf-8");
         } else {
             $data = [
                 "success" => false,

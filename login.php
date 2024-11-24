@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (password_verify($password, $user["password"])) {
             $_SESSION["user_id"] = $user["id"]; # Сохраняем сессию пользователя
             
-            header("Location: profile.php");
+            header("Location: index.php");
         } else {
             $data = [
                 "success" => false,

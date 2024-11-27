@@ -38,7 +38,7 @@
 		$total_pages = ceil($total_images / $images_per_page);
 
 		if ($total_images == 0) {
-			echo "Изображения не найдены";
+			echo 'Изображения не найдены';
 			exit();
 		}
 

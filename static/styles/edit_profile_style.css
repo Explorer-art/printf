@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins', sans-serif;
+    font-size: 16px;
+}
+
+#input-file {
+    display: none;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #0d1117;
+}
+
+.wrapper {
+    position: relative;
+    width: 1050px;
+    height: 500px;
+    background-color: #131c28;
+    border: 2px solid rgba(255, 255, 255, .2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    color: white;
+    border-radius: 10px;
+    padding: 30px 40px;
+}
+
+h1 {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.user-logo img {
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.user-logo {
+    position: relative;
+    right: 330px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+}
+
+img {
+    width: 144px;
+    height: 144px;
+}
+
+.btn-change-name {
+    position: absolute;
+    top: 415px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #0088a9;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s ease 0s;
+}
+
+.btn-change-name:hover {
+    background-color: rgba(0, 138, 169, 0.8);
+}
+
+label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF33;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s ease 0s;
+}
+
+label:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+p {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, .6);
+}
+
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: -150px;
+    gap: 15px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+input {
+    background: transparent;
+    outline: none;
+    border: 2px solid rgb(255, 255, 255, .2);
+    border-radius: 40px;
+    font-size: 1rem;
+    color: #fff;
+    padding: 5px 10px;
+    width: 400px;
+}
+
+.input-group {
+    display: flex;
+    gap: 20px; /* Отступ между двумя полями */
+    justify-content: flex-start; /* Выровнять поля влево */
+    align-items: flex-start; /* Выравнивание текста и полей по верхнему краю */
+}
+
+.input-box-name,
+.input-box-pass {
+    display: flex;
+    flex-direction: column; /* Поле и текст идут сверху вниз */
+    gap: 5px; /* Отступ между текстом и полем */
+}
+
+.input-box-name input,
+.input-box-pass input {
+    background: transparent;
+    outline: none;
+    border: 2px solid rgb(255, 255, 255, .2);
+    border-radius: 40px;
+    font-size: 1rem;
+    color: #fff;
+    padding: 5px 10px;
+    width: 190px;
+}
+
+.input-box-description textarea {
+    color: white;
+    background: transparent;
+    outline: none;
+    border: 2px solid rgb(255, 255, 255, .2);
+    font-size: 0.8rem;
+    padding: 7px 10px;
+    width: 400px;
+    border-radius: 20px;
+    height: 100px;
+    overflow-x: auto;
+    resize: none;
+    overflow-wrap: break-word;
+    line-height: 1.5;
+}

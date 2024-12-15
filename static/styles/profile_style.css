@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins', sans-serif;
+    font-size: 16px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #0d1117;
+}
+
+.wrapper {
+    position: relative;
+    width: 1050px;
+    min-height: 500px;
+    background-color: #131c28;
+    border: 2px solid rgba(255, 255, 255, .2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    color: white;
+    border-radius: 10px;
+    padding: 30px 40px;
+}
+
+h1 {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.user-logo {
+    position: relative;
+    right: 330px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.user-gallery img {
+    width: 144px;
+    height: 144px;
+    border-radius: 10px;
+    transition: 0.3s ease-in-out;
+}
+
+.user-gallery img:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+.user-logo img {
+    border-radius: 50%;
+    width: 144px;
+    height: 144px;
+}
+
+h2 {
+    position: absolute;
+    top: 145px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+}
+
+.description {
+    position: absolute;
+    top: 180px;
+    max-width: 250px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, .6);
+    overflow-wrap: break-word;
+}
+
+.edit-profile a {
+    position: absolute;
+    top: 390px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-decoration-line: none;
+    background-color: #0088a9;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s ease 0s;
+}
+
+.edit-profile a:hover {
+    background-color: rgba(0, 138, 169, 0.8);
+}
+
+.container-image-wrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    overflow: hidden;
+}
+
+.container-image {
+    position: absolute;
+    top: 47%;
+    left: 69%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 550px;
+    height: 250px;
+    overflow-y: auto;
+}
+
+.user-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px 30px;
+    width: 100px;
+}

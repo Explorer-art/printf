@@ -1,0 +1,17 @@
+.bar {
+    display: none;
+    margin-top: 10px;
+    border: 2px solid;
+    border-radius: 5px;
+    padding: 10px 5px;
+}
+
+.success {
+    border: 2px solid #68cc31;
+    background-color: rgba(104, 204, 49, 0.2);
+}
+
+.error {
+    border: 2px solid red;
+    background-color: rgba(255, 0, 0, 0.2);
+}

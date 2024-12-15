@@ -1,0 +1,130 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0d1117;
+}
+
+main {
+    margin-top: 77px;
+}
+
+.container-img {
+    width: 1440px;
+    margin: 20px auto;
+    columns: 6;
+    column-gap: 20px;
+}
+
+.container-img .box {
+    width: 100%;
+    margin-bottom: 10px;
+    break-inside: avoid;
+}
+
+.container-img .box img {
+    width: 100%;
+    border-radius: 10px;
+    transition: 0.3s ease-in-out;
+}
+
+.btn-nav {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.btn-nav .next {
+    display: flex; /* Используем Flexbox */
+    justify-content: center; /* Горизонтальное выравнивание */
+    align-items: center; /* Вертикальное выравнивание */
+    width: 150px;
+    height: 45px;
+    background: #0088a9;
+    border-radius: 40px;
+    font-size: 1rem;
+    color: white;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.next:hover {
+    background-color: rgba(0, 138, 169, 0.8);
+}
+
+.btn-nav .back {
+    display: flex; /* Используем Flexbox */
+    justify-content: center; /* Горизонтальное выравнивание */
+    align-items: center; /* Вертикальное выравнивание */
+    width: 150px;
+    height: 45px;
+    margin-right: 20px;
+    background: #FFFFFF33;
+    border-radius: 40px;
+    font-size: 1rem;
+    color: white;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.back:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.container-img .box img:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 2560px) {
+    .container-img {
+        width: calc(100% - 40px);
+        columns: 8;
+    }
+}
+
+@media screen and (max-width: 2160px) {
+    .container-img {
+        columns: 8;
+    }
+}
+
+@media screen and (max-width: 1920px) {
+    .container-img {
+        columns: 6;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .container-img {
+        columns: 4;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .container-img {
+        columns: 3;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container-img {
+        columns: 2;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container-img {
+        columns: 1;
+    }
+}
+

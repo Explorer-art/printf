@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins', sans-serif;
+}
+
+.load-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    background-color: #0d1117;
+    background-size: cover;
+    background-position: center;
+}
+
+.load-file {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 450px;
+    min-height: 450px;
+    background-color: #131c28;
+    border: 2px solid rgba(255, 255, 255, .2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    color: white;
+    border-radius: 10px;
+    padding: 30px 40px;
+    flex-direction: column;
+    gap: 30px;
+}
+
+h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px;
+}
+
+.select-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0088a9;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s ease 0s;
+}
+
+.select-img i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+#input-file,
+#input-load {
+    display: none;
+}
+
+.select-img:hover {
+    background-color: rgba(0, 138, 169, 0.8);
+}
+
+.load {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF33;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s ease 0s;
+}
+
+.load:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.text {
+    padding: 5px;
+    background-color: #0d1117;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    color: white;
+    border-radius: 10px;
+    width: 254px;
+    height: 75px;
+    overflow-x: auto;
+    resize: none;
+    overflow-wrap: break-word;
+    line-height: 1.5;
+}
+
+.load i {
+    margin-right: 10px;
+    font-size: 1.4rem;
+}
+
+.message {
+    font-size: 16px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/*.message.error {
+    background-color: rgba(255, 0, 0, 0.2);
+    border: 2px solid red ;
+    border-radius: 10px;
+    padding: 10px 5px;
+}*/
+
+/*.message.success {
+    background-color: rgba(104, 204, 49, 0.2);
+    border: 2px solid #68cc31;
+    border-radius: 10px;
+    padding: 10px 5px;
+}*/
+#response-container {
+    margin-top: 20px;
+    text-align: center;
+}
